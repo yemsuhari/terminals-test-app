@@ -56,7 +56,6 @@
 				6E5A3CC226AEC5F90085F482 /* Views */,
 				6E5A3CC126AEC5E90085F482 /* Models */,
 				6E5A3CB226AEC58D0085F482 /* Terminals_Test_AppApp.swift */,
-				6E5A3CB426AEC58D0085F482 /* ContentView.swift */,
 				6E5A3CB626AEC58D0085F482 /* Assets.xcassets */,
 				6E5A3CBB26AEC58D0085F482 /* Info.plist */,
 				6E5A3CB826AEC58D0085F482 /* Preview Content */,
@@ -82,6 +81,7 @@
 		6E5A3CC226AEC5F90085F482 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6E5A3CB426AEC58D0085F482 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
