@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View
 {
-    @State var firstName = ""
-    @State var lastName = ""
+    @State var from = ""
+    @State var to = ""
     
     var body: some View
     {
@@ -22,8 +22,8 @@ struct ContentView: View
                 {
                     Section
                     {
-                        TextField("Откуда", text: $firstName)
-                        TextField("Куда", text: $lastName)
+                        TextField("Откуда", text: $from)
+                        TextField("Куда", text: $to)
                     }
                     
                     Section
