@@ -52,6 +52,9 @@
 		6E5A3CB126AEC58D0085F482 /* Terminals Test App */ = {
 			isa = PBXGroup;
 			children = (
+				6E5A3CC326AEC60D0085F482 /* ViewModels */,
+				6E5A3CC226AEC5F90085F482 /* Views */,
+				6E5A3CC126AEC5E90085F482 /* Models */,
 				6E5A3CB226AEC58D0085F482 /* Terminals_Test_AppApp.swift */,
 				6E5A3CB426AEC58D0085F482 /* ContentView.swift */,
 				6E5A3CB626AEC58D0085F482 /* Assets.xcassets */,
@@ -67,6 +70,27 @@
 				6E5A3CB926AEC58D0085F482 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6E5A3CC126AEC5E90085F482 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6E5A3CC226AEC5F90085F482 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6E5A3CC326AEC60D0085F482 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
