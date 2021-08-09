@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct Terminals_Test_AppApp: App {
-    var body: some Scene {
-        WindowGroup {
+struct Terminals_Test_App: App
+{
+    var body: some Scene
+    {
+        WindowGroup
+        {
             ContentView()
+                //.environmentObject(ContentModel())
         }
     }
 }

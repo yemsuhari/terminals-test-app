@@ -6,11 +6,21 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View
 {
+    
     @State var from = ""
     @State var to = ""
+    
+    let contentModelInstance = ContentModel()
+    
+    //func printText()
+    //{
+    //    print("how is it goin?")
+    //}
+    
     
     var body: some View
     {
@@ -36,7 +46,11 @@ struct ContentView: View
                     
                 }
             }
-            .navigationTitle("Terminals App")
+            .navigationTitle("Терминалы")
+            .onAppear
+            {
+                contentModelInstance.parseJson()
+            }
         }
         
     }
