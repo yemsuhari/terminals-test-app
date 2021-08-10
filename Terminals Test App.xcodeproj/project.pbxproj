@@ -14,9 +14,11 @@
 		6E5A3CC626AED9970085F482 /* MainView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A3CC526AED9970085F482 /* MainView1.png */; };
 		6EB30E8626B98D99000C78CC /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB30E8526B98D99000C78CC /* ContentModel.swift */; };
 		6ECA8C4C26B7F723007E5F12 /* models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA8C4B26B7F723007E5F12 /* models.swift */; };
+		EA12BBED7B0D1BC781151922 /* Pods_Terminals_Test_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945FC9AFAE8E1F79AC2BC7DC /* Pods_Terminals_Test_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D37477A8556F901C95E51C5 /* Pods-Terminals Test App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Terminals Test App.debug.xcconfig"; path = "Target Support Files/Pods-Terminals Test App/Pods-Terminals Test App.debug.xcconfig"; sourceTree = "<group>"; };
 		6E5A3CAF26AEC58D0085F482 /* Terminals Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Terminals Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5A3CB226AEC58D0085F482 /* Terminals_Test_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminals_Test_App.swift; sourceTree = "<group>"; };
 		6E5A3CB426AEC58D0085F482 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		6E5A3CC526AED9970085F482 /* MainView1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainView1.png; sourceTree = "<group>"; };
 		6EB30E8526B98D99000C78CC /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		6ECA8C4B26B7F723007E5F12 /* models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = models.swift; sourceTree = "<group>"; };
+		90EDDB0EDFEFA7CEBB91DF28 /* Pods-Terminals Test App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Terminals Test App.release.xcconfig"; path = "Target Support Files/Pods-Terminals Test App/Pods-Terminals Test App.release.xcconfig"; sourceTree = "<group>"; };
+		945FC9AFAE8E1F79AC2BC7DC /* Pods_Terminals_Test_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Terminals_Test_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA12BBED7B0D1BC781151922 /* Pods_Terminals_Test_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +50,8 @@
 				6E5A3CB226AEC58D0085F482 /* Terminals_Test_App.swift */,
 				6E5A3CB126AEC58D0085F482 /* Terminals Test App */,
 				6E5A3CB026AEC58D0085F482 /* Products */,
+				DC567BBCECD0D5335E709C43 /* Pods */,
+				A184F651DC6BF7AFB02AB701 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +117,24 @@
 			path = "Preview Images";
 			sourceTree = "<group>";
 		};
+		A184F651DC6BF7AFB02AB701 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				945FC9AFAE8E1F79AC2BC7DC /* Pods_Terminals_Test_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC567BBCECD0D5335E709C43 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1D37477A8556F901C95E51C5 /* Pods-Terminals Test App.debug.xcconfig */,
+				90EDDB0EDFEFA7CEBB91DF28 /* Pods-Terminals Test App.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,9 +142,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E5A3CBE26AEC58D0085F482 /* Build configuration list for PBXNativeTarget "Terminals Test App" */;
 			buildPhases = (
+				D79C0D30EFD6AE99210CB21E /* [CP] Check Pods Manifest.lock */,
 				6E5A3CAB26AEC58D0085F482 /* Sources */,
 				6E5A3CAC26AEC58D0085F482 /* Frameworks */,
 				6E5A3CAD26AEC58D0085F482 /* Resources */,
+				DBB1C5E40002A6E0834A14D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +201,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D79C0D30EFD6AE99210CB21E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Terminals Test App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBB1C5E40002A6E0834A14D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Terminals Test App/Pods-Terminals Test App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Terminals Test App/Pods-Terminals Test App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Terminals Test App/Pods-Terminals Test App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E5A3CAB26AEC58D0085F482 /* Sources */ = {
@@ -308,6 +377,7 @@
 		};
 		6E5A3CBF26AEC58D0085F482 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D37477A8556F901C95E51C5 /* Pods-Terminals Test App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -329,6 +399,7 @@
 		};
 		6E5A3CC026AEC58D0085F482 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90EDDB0EDFEFA7CEBB91DF28 /* Pods-Terminals Test App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
