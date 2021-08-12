@@ -61,10 +61,47 @@ class Worktables: Object, Codable { // нужно
 
 // MARK: - Worktable
 class Worktable: Object, Codable { // нужно
-    @objc dynamic let department: Department
+    var department = Department.доставкаГруза.rawValue
+    var departmentEnum: Department
+    {
+        get
+        {
+            return Department(rawValue: department)!
+        }
+        set
+        {
+            department = newValue.rawValue
+        }
+    }
     @objc dynamic let monday, tuesday, wednesday, thursday: String
     @objc dynamic let friday: String
-    @objc dynamic let saturday, sunday: Day
+    
+    var saturday = Day.empty.rawValue
+    var dayEnumSaturday: Day
+    {
+        get
+        {
+            return Day(rawValue: saturday)!
+        }
+        set
+        {
+            saturday = newValue.rawValue
+        }
+    }
+    
+    var sunday = Day.empty.rawValue
+    var dayEnumSunday: Day
+    {
+        get
+        {
+            return Day(rawValue: sunday)!
+        }
+        set
+        {
+            sunday = newValue.rawValue
+        }
+    }
+    
     @objc dynamic let timetable: String
 }
 
@@ -106,3 +143,4 @@ enum Day: String, Codable { // нужно
     case the21002100 = "21:00-21:00"
     case the24Ч = "24 ч"
 }
+
