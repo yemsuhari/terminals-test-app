@@ -36,7 +36,7 @@ class ContentModel: ObservableObject
                 //dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 //decoder.dateDecodingStrategy = .formatted(dateFormatter)
                 
-                let object = try decoder.decode(Object.self, from: data)
+                let object = try decoder.decode(MainObject.self, from: data)
                 print("boba")
                 //print(cities.first?.name)
             }

@@ -8,5 +8,4 @@ target 'Terminals Test App' do
   # Pods for Terminals Test App
 
  pod 'RealmSwift'
-
 end
