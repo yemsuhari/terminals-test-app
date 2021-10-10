@@ -6,47 +6,59 @@
 //
 
 import Foundation
+import RealmSwift
 
 class ContentModel: ObservableObject
 
 {
+    @Published var object : MainObject?
+    
+    init()
+    {
+        parseJson()
+    }
+    
     func parseJson()
     {
+        //var object : MainObject?
+        
+        //let realm = try! Realm()
+        
+        //var myData = JsonData()
+        
+        // Get the path to the JSON file
         let urlString = "https://api.dellin.ru/static/catalog/terminals_v3.json"
         
+        // Create a URL object
         guard let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) {data, response, error in
-            if let error = error
-            {
-                print(error)
-                return
-            }
-            
-            guard let data = data else { return }
-            
-            //let jsonString = String(data: data, encoding: .utf8)
-            //print(jsonString)
+        let decoder = JSONDecoder()
+        
+        
+//        URLSession.shared.dataTask(with: url)
+//        { data, response, error in
+//            if let error = error
+//            {
+//                print(error)
+//                return
+//            }
+//
             
             do
             {
-                let decoder = JSONDecoder()
+                // Create data object
+                var myData = try Data(contentsOf: url)
                 
-                //let dateFormatter = DateFormatter()
-                //dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                //decoder.dateDecodingStrategy = .formatted(dateFormatter)
                 
-                let object = try decoder.decode(MainObject.self, from: data)
+                self.object = try decoder.decode(MainObject.self, from: myData)
                 print("boba")
-                //print(cities.first?.name)
+                return
             }
             catch
             {
                 print(error)
             }
             
-            
-        }.resume()
-
+//        }.resume()
     }
 }

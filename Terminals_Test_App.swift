@@ -15,7 +15,7 @@ struct Terminals_Test_App: App
         WindowGroup
         {
             ContentView()
-                //.environmentObject(ContentModel())
+                .environmentObject(ContentModel())
         }
     }
 }

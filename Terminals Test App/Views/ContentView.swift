@@ -14,12 +14,9 @@ struct ContentView: View
     @State var from = ""
     @State var to = ""
     
-    let contentModelInstance = ContentModel()
+    @StateObject var content = ContentModel()
     
-    //func printText()
-    //{
-    //    print("how is it goin?")
-    //}
+    //let contentModelInstance = ContentModel()
     
     
     var body: some View
@@ -45,14 +42,14 @@ struct ContentView: View
                     }
                     
                 }
+                
+                
+                Text((content.object?.city[0].name)!)
+                    .padding(100)
+                
             }
             .navigationTitle("Терминалы")
-            .onAppear
-            {
-                contentModelInstance.parseJson()
-            }
         }
-        
     }
 }
 
