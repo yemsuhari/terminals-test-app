@@ -45,8 +45,10 @@ class ContentModel: ObservableObject
             let realm = try Realm()
             try realm.write
             {
+                realm.deleteAll()
                 realm.add(savedData)
             }
+            
 
             
             return
