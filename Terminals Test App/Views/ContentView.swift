@@ -44,8 +44,10 @@ struct ContentView: View
                 }
                 
                 
-                Text((content.object?.city[0].name)!)
+                Text("osas")
                     .padding(100)
+                    
+                
                 
             }
             .navigationTitle("Терминалы")

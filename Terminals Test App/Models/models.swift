@@ -1,14 +1,12 @@
 import Foundation
 
 // MARK: - Welcome
-struct MainObject: Codable
-{
+struct MainObject: Codable {
     let city: [City]
 }
 
 // MARK: - City
-struct City: Codable
-{
+struct City: Codable {
     let id, name, code: String
     let cityID: Int
     let latitude, longitude, url, timeshift: String
@@ -18,8 +16,7 @@ struct City: Codable
     let freeStorageDays: String?
     let terminals: Terminals
 
-    enum CodingKeys: String, CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case id, name, code, cityID, latitude, longitude, url, timeshift, requestEndTime, sfrequestEndTime
         case day2DayRequest = "day2dayRequest"
         case day2DaySFRequest = "day2daySFRequest"
@@ -27,29 +24,25 @@ struct City: Codable
     }
 }
 
-enum RequestEndTime: String, Codable
-{
+enum RequestEndTime: String, Codable {
     case the1700 = "17:00"
     case the2330 = "23:30"
     case the2359 = "23:59"
 }
 
-enum SfrequestEndTime: String, Codable
-{
+enum SfrequestEndTime: String, Codable {
     case empty = "  :  "
     case the1700 = "17:00"
     case the1800 = "18:00"
 }
 
 // MARK: - Terminals
-struct Terminals: Codable
-{
+struct Terminals: Codable {
     let terminal: [Terminal]
 }
 
 // MARK: - Terminal
-struct Terminal: Codable
-{
+struct Terminal: Codable {
     let id, name, address, fullAddress: String
     let latitude, longitude: String
     let phones: [Phone]
@@ -67,8 +60,7 @@ struct Terminal: Codable
     let maxShippingVolume: Double
     let worktables: Worktables
 
-    enum CodingKeys: String, CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case id, name, address, fullAddress, latitude, longitude, phones, storage, mail, mainPhone, isPVZ, isOffice, receiveCargo, giveoutCargo, maps, addressCode, calcSchedule
         case terminalDefault = "default"
         case maxWeight, maxLength, maxWidth, maxHeight, maxVolume, maxShippingWeight, maxShippingVolume, worktables
@@ -76,12 +68,10 @@ struct Terminal: Codable
 }
 
 // MARK: - AddressCode
-struct AddressCode: Codable
-{
+struct AddressCode: Codable {
     let streetCode, placeCode: String?
 
-    enum CodingKeys: String, CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case streetCode = "street_code"
         case placeCode = "place_code"
     }
@@ -92,59 +82,50 @@ struct CalcSchedule: Codable {
     let derival, arrival: String
 }
 
-enum Mail: String, Codable
-{
+enum Mail: String, Codable {
     case pismoDellinRu = "pismo@dellin.ru"
 }
 
 // MARK: - Maps
-struct Maps: Codable
-{
+struct Maps: Codable {
     let width: [String: Width]?
 }
 
 // MARK: - Width
-struct Width: Codable
-{
+struct Width: Codable {
     let height: [String: Height]
 }
 
 // MARK: - Height
-struct Height: Codable
-{
+struct Height: Codable {
     let url: String
 }
 
 // MARK: - Phone
-struct Phone: Codable
-{
+struct Phone: Codable {
     let number: String
     let type: TypeEnum
     let comment: Comment
     let primary: Bool
 }
 
-enum Comment: String, Codable
-{
+enum Comment: String, Codable {
     case empty = ""
     case доб4 = "доб. 4"
     case многоканальный = "многоканальный"
 }
 
-enum TypeEnum: String, Codable
-{
+enum TypeEnum: String, Codable {
     case городской = "городской"
 }
 
 // MARK: - Worktables
-struct Worktables: Codable
-{
+struct Worktables: Codable {
     let worktable: [Worktable]
 }
 
 // MARK: - Worktable
-struct Worktable: Codable
-{
+struct Worktable: Codable {
     let department: Department
     let monday, tuesday, wednesday, thursday: String
     let friday: String
@@ -152,18 +133,16 @@ struct Worktable: Codable
     let timetable: String
 }
 
-enum Department: String, Codable
-{
+enum Department: String, Codable {
     case доставкаГруза = "Доставка груза"
     case ответственноеХранение = "Ответственное хранение"
-    case ответственноеХранениеПриёмИВыдачаГруза = "Ответственное хранение: приём и выдача груза"
     case офис = "Офис"
     case приёмГруза = "Приём груза"
     case приёмИВыдачаГруза = "Приём и выдача груза"
+    case приёмИВыдачаГрузаОтветственноеХранение = "Приём и выдача груза (ответственное хранение)"
 }
 
-enum Day: String, Codable
-{
+enum Day: String, Codable {
     case day11001600 = "11:00-16:00 "
     case empty = "-"
     case the00001600 = "00:00-16:00"

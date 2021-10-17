@@ -12,7 +12,7 @@ class ContentModel: ObservableObject
 
 {
     @Published var object : MainObject?
-    var savedData = JsonData()
+    var savedData = MyData()
     let decoder = JSONDecoder()
     
     
@@ -26,7 +26,7 @@ class ContentModel: ObservableObject
         
         do
         {
-            
+
             // Get the path to the JSON file
             let urlString = "https://api.dellin.ru/static/catalog/terminals_v3.jsons"
             
@@ -34,13 +34,13 @@ class ContentModel: ObservableObject
             guard let url = URL(string: urlString) else { return }
             
             // Create data object
-            var myData = try Data(contentsOf: url)
+            let dataObject = try Data(contentsOf: url)
             
             // Decode the data
-            self.object = try decoder.decode(MainObject.self, from: myData)
+            self.object = try decoder.decode(MainObject.self, from: dataObject)
             
             // Saving data to Realm database
-            savedData.parsedData = myData
+            savedData.parsedData = dataObject
             
             let realm = try Realm()
             try realm.write
@@ -49,8 +49,6 @@ class ContentModel: ObservableObject
                 realm.add(savedData)
             }
             
-
-            
             return
         }
         catch
@@ -58,8 +56,13 @@ class ContentModel: ObservableObject
             do
             {
                 let realm = try Realm()
-                let datas = realm.objects(JsonData.self)
-                self.object = try decoder.decode(MainObject.self, from: datas[0].parsedData)
+                let datas = realm.objects(MyData.self)
+                if datas.first?.parsedData != nil
+                {
+                    self.object = try decoder.decode(MainObject.self, from: datas.first!.parsedData)
+                }
+                
+                
             }
             catch
             {
@@ -72,24 +75,4 @@ class ContentModel: ObservableObject
         
     }
 }
-
-//        }.resume()
-
-//var object : MainObject?
-
-//let realm = try! Realm()
-
-//var myData = JsonData()
-
-
-//        URLSession.shared.dataTask(with: url)
-//        { data, response, error in
-//            if let error = error
-//            {
-//                print(error)
-//                return
-//            }
-
-
-
 //print(Realm.Configuration.defaultConfiguration.fileURL)
