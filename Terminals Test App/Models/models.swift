@@ -1,120 +1,148 @@
-//
-//  models.swift
-//  Terminals Test App
-//
-//  Created by Fyodor Vladimirov on 02.08.2021.
-//
-
 import Foundation
-import RealmSwift
 
-// MARK: - MainObject
-class MainObject: Object, Codable {
-    @objc dynamic let city: [City]
+// MARK: - Welcome
+struct MainObject: Codable {
+    let city: [City]
 }
 
 // MARK: - City
-class City: Object, Codable {
-    @objc dynamic let terminals: Terminals // нужно
+struct City: Codable {
+    let id, name, code: String
+    let cityID: Int
+    let latitude, longitude, url, timeshift: String
+    let requestEndTime: RequestEndTime
+    let sfrequestEndTime: SfrequestEndTime
+    let day2DayRequest, day2DaySFRequest, preorderRequest: String
+    let freeStorageDays: String?
+    let terminals: Terminals
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, code, cityID, latitude, longitude, url, timeshift, requestEndTime, sfrequestEndTime
+        case day2DayRequest = "day2dayRequest"
+        case day2DaySFRequest = "day2daySFRequest"
+        case preorderRequest, freeStorageDays, terminals
+    }
 }
 
+enum RequestEndTime: String, Codable {
+    case the1700 = "17:00"
+    case the2330 = "23:30"
+    case the2359 = "23:59"
+}
 
-// MARK: - Terminals // нужно
-class Terminals: Object, Codable {
-    @objc dynamic let terminal: [Terminal]
+enum SfrequestEndTime: String, Codable {
+    case empty = "  :  "
+    case the1700 = "17:00"
+    case the1800 = "18:00"
+}
+
+// MARK: - Terminals
+struct Terminals: Codable {
+    let terminal: [Terminal]
 }
 
 // MARK: - Terminal
-class Terminal: Object, Codable {
-    @objc dynamic let name:String // нужно
-    @objc dynamic let address:String  // нужно
-    @objc dynamic let latitude:String // нужно
-    @objc dynamic let longitude:String // нужно
-    @objc dynamic let receiveCargo:Bool // нужно
-    @objc dynamic let giveoutCargo:Bool // нужно
-    @objc dynamic let maps: Maps // нужно
-    @objc dynamic let `default`: Bool // нужно
-    @objc dynamic let worktables: Worktables // нужно
+struct Terminal: Codable {
+    let id, name, address, fullAddress: String
+    let latitude, longitude: String
+    let phones: [Phone]
+    let storage: Bool
+    let mail: Mail?
+    let mainPhone: String?
+    let isPVZ, isOffice, receiveCargo, giveoutCargo: Bool
+    let maps: Maps
+    let addressCode: AddressCode?
+    let calcSchedule: CalcSchedule
+    let terminalDefault: Bool
+    let maxWeight: Int
+    let maxLength, maxWidth, maxHeight, maxVolume: Double
+    let maxShippingWeight: Int
+    let maxShippingVolume: Double
+    let worktables: Worktables
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, address, fullAddress, latitude, longitude, phones, storage, mail, mainPhone, isPVZ, isOffice, receiveCargo, giveoutCargo, maps, addressCode, calcSchedule
+        case terminalDefault = "default"
+        case maxWeight, maxLength, maxWidth, maxHeight, maxVolume, maxShippingWeight, maxShippingVolume, worktables
+    }
 }
 
+// MARK: - AddressCode
+struct AddressCode: Codable {
+    let streetCode, placeCode: String?
+
+    enum CodingKeys: String, CodingKey {
+        case streetCode = "street_code"
+        case placeCode = "place_code"
+    }
+}
+
+// MARK: - CalcSchedule
+struct CalcSchedule: Codable {
+    let derival, arrival: String
+}
+
+enum Mail: String, Codable {
+    case pismoDellinRu = "pismo@dellin.ru"
+}
 
 // MARK: - Maps
-class Maps: Object, Codable { // нужно
-    @objc dynamic let width: [String: Width]?
+struct Maps: Codable {
+    let width: [String: Width]?
 }
 
 // MARK: - Width
-class Width: Object, Codable { //нужно
-    @objc dynamic let height: [String: Height]
+struct Width: Codable {
+    let height: [String: Height]
 }
 
 // MARK: - Height
-class Height: Object, Codable { //нужно
-    @objc dynamic let url: String
+struct Height: Codable {
+    let url: String
 }
 
+// MARK: - Phone
+struct Phone: Codable {
+    let number: String
+    let type: TypeEnum
+    let comment: Comment
+    let primary: Bool
+}
+
+enum Comment: String, Codable {
+    case empty = ""
+    case доб4 = "доб. 4"
+    case многоканальный = "многоканальный"
+}
+
+enum TypeEnum: String, Codable {
+    case городской = "городской"
+}
 
 // MARK: - Worktables
-class Worktables: Object, Codable { // нужно
-    @objc dynamic let worktable: [Worktable]
+struct Worktables: Codable {
+    let worktable: [Worktable]
 }
 
 // MARK: - Worktable
-class Worktable: Object, Codable { // нужно
-    var department = Department.доставкаГруза.rawValue
-    var departmentEnum: Department
-    {
-        get
-        {
-            return Department(rawValue: department)!
-        }
-        set
-        {
-            department = newValue.rawValue
-        }
-    }
-    @objc dynamic let monday, tuesday, wednesday, thursday: String
-    @objc dynamic let friday: String
-    
-    var saturday = Day.empty.rawValue
-    var dayEnumSaturday: Day
-    {
-        get
-        {
-            return Day(rawValue: saturday)!
-        }
-        set
-        {
-            saturday = newValue.rawValue
-        }
-    }
-    
-    var sunday = Day.empty.rawValue
-    var dayEnumSunday: Day
-    {
-        get
-        {
-            return Day(rawValue: sunday)!
-        }
-        set
-        {
-            sunday = newValue.rawValue
-        }
-    }
-    
-    @objc dynamic let timetable: String
+struct Worktable: Codable {
+    let department: Department
+    let monday, tuesday, wednesday, thursday: String
+    let friday: String
+    let saturday, sunday: Day
+    let timetable: String
 }
 
-enum Department: String, Codable { // нужно
+enum Department: String, Codable {
     case доставкаГруза = "Доставка груза"
     case ответственноеХранение = "Ответственное хранение"
-    case ответственноеХранениеПриёмИВыдачаГруза = "Ответственное хранение: приём и выдача груза"
     case офис = "Офис"
     case приёмГруза = "Приём груза"
     case приёмИВыдачаГруза = "Приём и выдача груза"
+    case приёмИВыдачаГрузаОтветственноеХранение = "Приём и выдача груза (ответственное хранение)"
 }
 
-enum Day: String, Codable { // нужно
+enum Day: String, Codable {
     case day11001600 = "11:00-16:00 "
     case empty = "-"
     case the00001600 = "00:00-16:00"
@@ -128,7 +156,6 @@ enum Day: String, Codable { // нужно
     case the09001600 = "09:00-16:00"
     case the09001700 = "09:00-17:00"
     case the09001800 = "09:00-18:00"
-    case the09002000 = "09:00-20:00"
     case the09002100 = "09:00-21:00"
     case the10001400 = "10:00-14:00"
     case the10001500 = "10:00-15:00"
@@ -143,4 +170,3 @@ enum Day: String, Codable { // нужно
     case the21002100 = "21:00-21:00"
     case the24Ч = "24 ч"
 }
-
