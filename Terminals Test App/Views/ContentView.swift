@@ -43,10 +43,11 @@ struct ContentView: View
                     
                 }
                 
-                
-                Text("osas")
-                    .padding(100)
-                    
+                if content.object?.city.first?.name != nil
+                {
+                    Text(content.object!.city.first!.name)
+                        .padding(100)
+                }
                 
                 
             }
