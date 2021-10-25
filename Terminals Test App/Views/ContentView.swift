@@ -15,6 +15,9 @@ struct ContentView: View
     @State var from = ""
     @State var to = ""
     
+    @State var searchText = ""
+    @State var searching = false
+    
     @StateObject var content = ContentModel()
     
   
@@ -24,33 +27,59 @@ struct ContentView: View
         {
             VStack
             {
-                Form
+                // Поисковая строка
+                ZStack
                 {
-                    Section
+                    Rectangle()
+                        .foregroundColor(Color("ColorOne"))
+                    HStack
                     {
-                        TextField("Откуда", text: $from)
-                        List
-                        {
-                            ForEach(content.object!.city, id: \.id)
-                            { city in
-                                ForEach(city.terminals.terminal, id: \.id)
-                                { terminal in
-                                    Text(terminal.name)
+                        Image(systemName: "magnifyingglass")
+                        TextField("Откуда", text: $searchText)
+                        { startedEditing in
+                            if startedEditing
+                            {
+                                withAnimation
+                                {
+                                    searching = true
                                 }
                             }
                         }
-                        TextField("Куда", text: $to)
+                        onCommit:
+                        {
+                            withAnimation
+                            {
+                                searching = false
+                            }
+                        }
                     }
-
-                    Section
-                    {
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Text("Сохранить")
-                        })
-                        
-                    }
-                    
+                    .foregroundColor(.gray)
+                    .padding(.leading, 15)
                 }
+                .frame(height: 40)
+                .cornerRadius(13)
+                .padding()
+                
+                List
+                {
+                    if searching == true
+                    {
+                        ForEach(content.object!.city, id: \.id)
+                        { city in
+                            ForEach(city.terminals.terminal, id: \.id)
+                            { terminal in
+                                Text(terminal.name)
+                            }
+                        }
+                    }
+                }
+                
+                Spacer()
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Text("Сохранить")
+                })
+
                 
                 // пример использования информации из object
 //                if content.object?.city.first?.name != nil
@@ -63,6 +92,7 @@ struct ContentView: View
             }
             .navigationTitle("Терминалы")
         }
+        
     }
 }
 
