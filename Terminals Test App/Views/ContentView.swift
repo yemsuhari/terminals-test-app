@@ -72,7 +72,10 @@ struct ContentView: View
                                 return terminal.name.hasPrefix(searchText) || searchText == ""
                             }), id: \.id)
                             { terminal in
-                                Text(terminal.name)
+                                //Text(terminal.name)
+                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                    Text(terminal.name)
+                                })
                             }
                         }
                     }
