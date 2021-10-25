@@ -28,45 +28,49 @@ struct ContentView: View
             VStack
             {
                 // Поисковая строка
-                ZStack
-                {
-                    Rectangle()
-                        .foregroundColor(Color("ColorOne"))
-                    HStack
-                    {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Откуда", text: $searchText)
-                        { startedEditing in
-                            if startedEditing
-                            {
-                                withAnimation
-                                {
-                                    searching = true
-                                }
-                            }
-                        }
-                        onCommit:
-                        {
-                            withAnimation
-                            {
-                                searching = false
-                            }
-                        }
-                    }
-                    .foregroundColor(.gray)
-                    .padding(.leading, 15)
-                }
-                .frame(height: 40)
-                .cornerRadius(13)
-                .padding()
+               
                 
                 List
                 {
+                    ZStack
+                    {
+                        Rectangle()
+                            .foregroundColor(Color("White"))
+                        HStack
+                        {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Откуда", text: $searchText)
+                            { startedEditing in
+                                if startedEditing
+                                {
+                                    withAnimation
+                                    {
+                                        searching = true
+                                    }
+                                }
+                            }
+                            onCommit:
+                            {
+                                withAnimation
+                                {
+                                    searching = false
+                                }
+                            }
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.leading, 15)
+                    }
+                    .frame(height: 30)
+                    .cornerRadius(13)
+                    
+                    
                     if searching == true
                     {
                         ForEach(content.object!.city, id: \.id)
                         { city in
-                            ForEach(city.terminals.terminal, id: \.id)
+                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+                                return terminal.name.hasPrefix(searchText) || searchText == ""
+                            }), id: \.id)
                             { terminal in
                                 Text(terminal.name)
                             }
@@ -78,6 +82,9 @@ struct ContentView: View
                 
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                     Text("Сохранить")
+                        .foregroundColor(.blue)
+                        .padding()
+
                 })
 
                 
