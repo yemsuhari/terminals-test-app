@@ -10,15 +10,14 @@ import Foundation
 
 struct ContentView: View
 {
+    let colors: [Color] = [.red, .green, .blue]
     
     @State var from = ""
     @State var to = ""
     
     @StateObject var content = ContentModel()
     
-    //let contentModelInstance = ContentModel()
-    
-    
+  
     var body: some View
     {
         NavigationView
@@ -30,9 +29,19 @@ struct ContentView: View
                     Section
                     {
                         TextField("Откуда", text: $from)
+                        List
+                        {
+                            ForEach(content.object!.city, id: \.id)
+                            { city in
+                                ForEach(city.terminals.terminal, id: \.id)
+                                { terminal in
+                                    Text(terminal.name)
+                                }
+                            }
+                        }
                         TextField("Куда", text: $to)
                     }
-                    
+
                     Section
                     {
                         Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
@@ -43,11 +52,12 @@ struct ContentView: View
                     
                 }
                 
-                if content.object?.city.first?.name != nil
-                {
-                    Text(content.object!.city.first!.name)
-                        .padding(100)
-                }
+                // пример использования информации из object
+//                if content.object?.city.first?.name != nil
+//                {
+//                    Text(content.object!.city.first!.name)
+//                        .padding(100)
+//                }
                 
                 
             }
