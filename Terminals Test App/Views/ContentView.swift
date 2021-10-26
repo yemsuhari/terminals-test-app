@@ -18,18 +18,18 @@ struct ContentView: View
     @State var searchText = ""
     @State var searching = false
     
+    @State var whereId = "0"
+        
+    
+    
     @StateObject var content = ContentModel()
     
-  
     var body: some View
     {
         NavigationView
         {
             VStack
             {
-                // Поисковая строка
-               
-                
                 List
                 {
                     ZStack
@@ -60,7 +60,6 @@ struct ContentView: View
                         .foregroundColor(.gray)
                         .padding(.leading, 15)
                     }
-                    .frame(height: 30)
                     .cornerRadius(13)
                     
                     
@@ -72,24 +71,24 @@ struct ContentView: View
                                 return terminal.name.hasPrefix(searchText) || searchText == ""
                             }), id: \.id)
                             { terminal in
-                                //Text(terminal.name)
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Button(action: {
+                                    searchText = terminal.name
+                                    searching = false
+                                    UIApplication.shared.dismissKeyboard()
+                                    whereId = terminal.id
+                                }, label: {
                                     Text(terminal.name)
                                 })
                             }
                         }
                     }
+                    
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        Text("Сохранить")
+                            .foregroundColor(.blue)
+                            .padding()
+                    })
                 }
-                
-                Spacer()
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Сохранить")
-                        .foregroundColor(.blue)
-                        .padding()
-
-                })
-
                 
                 // пример использования информации из object
 //                if content.object?.city.first?.name != nil
@@ -113,3 +112,11 @@ struct ContentView_Previews: PreviewProvider
         ContentView()
     }
 }
+
+extension UIApplication
+{
+     func dismissKeyboard()
+    {
+         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+     }
+ }

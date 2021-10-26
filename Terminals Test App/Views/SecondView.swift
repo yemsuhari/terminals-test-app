@@ -1,13 +1,13 @@
 //
-//  ListView.swift
+//  SecondView.swift
 //  Terminals Test App
 //
-//  Created by Fyodor Vladimirov on 23.10.2021.
+//  Created by Fyodor Vladimirov on 25.10.2021.
 //
 
 import SwiftUI
 
-struct ListView: View
+struct SecondView: View
 {
     var body: some View
     {
@@ -15,10 +15,10 @@ struct ListView: View
     }
 }
 
-struct ListView_Previews: PreviewProvider
+struct SecondView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        ListView()
+        SecondView()
     }
 }

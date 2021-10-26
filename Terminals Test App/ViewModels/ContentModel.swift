@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 
 class ContentModel: ObservableObject
 
@@ -14,6 +15,8 @@ class ContentModel: ObservableObject
     @Published var object : MainObject?
     var savedData = MyData()
     let decoder = JSONDecoder()
+    
+    @Published var allTerminals: [Terminal]?
     
     
     init()
@@ -39,6 +42,13 @@ class ContentModel: ObservableObject
             // Decode the data
             self.object = try decoder.decode(MainObject.self, from: dataObject)
             
+            // Все терминалы
+            object!.city.forEach
+            { city in
+                var newTerminals = city.terminals.terminal
+                allTerminals! += newTerminals
+            }
+            
             // Saving data to Realm database
             savedData.parsedData = dataObject
             
@@ -61,8 +71,12 @@ class ContentModel: ObservableObject
                 {
                     self.object = try decoder.decode(MainObject.self, from: datas.first!.parsedData)
                 }
-                
-                
+                // Все терминалы
+                object!.city.forEach
+                { city in
+                    var newTerminals = city.terminals.terminal
+                    allTerminals?.append(contentsOf: newTerminals )
+                }
             }
             catch
             {
@@ -72,7 +86,11 @@ class ContentModel: ObservableObject
             print(error)
         }
         
-        
     }
 }
+
+
+
+
+
 //print(Realm.Configuration.defaultConfiguration.fileURL)
