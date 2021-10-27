@@ -10,13 +10,14 @@ import Foundation
 
 struct ContentView: View
 {
-    let colors: [Color] = [.red, .green, .blue]
     
     @State var from = ""
     @State var to = ""
     
-    @State var searchText = ""
-    @State var searching = false
+    @State var searchTextOne = ""
+    @State var searchTextTwo = ""
+    @State var searchingOne = false
+    @State var searchingTwo = false
     
     @State var whereId = "0"
         
@@ -32,6 +33,7 @@ struct ContentView: View
             {
                 List
                 {
+                    // Откуда
                     ZStack
                     {
                         Rectangle()
@@ -39,13 +41,13 @@ struct ContentView: View
                         HStack
                         {
                             Image(systemName: "magnifyingglass")
-                            TextField("Откуда", text: $searchText)
+                            TextField("Откуда", text: $searchTextOne)
                             { startedEditing in
                                 if startedEditing
                                 {
                                     withAnimation
                                     {
-                                        searching = true
+                                        searchingOne = true
                                     }
                                 }
                             }
@@ -53,7 +55,59 @@ struct ContentView: View
                             {
                                 withAnimation
                                 {
-                                    searching = false
+                                    searchingOne = false
+                                }
+                            }
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.leading, 15)
+                    }
+                    .cornerRadius(13)
+                    
+                    // Список "Откуда"
+                    if searchingOne == true
+                    {
+                        ForEach(content.object!.city, id: \.id)
+                        { city in
+                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+                                return terminal.name.hasPrefix(searchTextOne) || searchTextOne == ""
+                            }), id: \.id)
+                            { terminal in
+                                Button(action: {
+                                    searchTextOne = terminal.name
+                                    searchingOne = false
+                                    UIApplication.shared.dismissKeyboard()
+                                    whereId = terminal.id
+                                }, label: {
+                                    Text(terminal.name)
+                                })
+                            }
+                        }
+                    }
+                    
+                    // Куда
+                    ZStack
+                    {
+                        Rectangle()
+                            .foregroundColor(Color("White"))
+                        HStack
+                        {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Куда", text: $searchTextTwo)
+                            { startedEditing in
+                                if startedEditing
+                                {
+                                    withAnimation
+                                    {
+                                        searchingTwo = true
+                                    }
+                                }
+                            }
+                            onCommit:
+                            {
+                                withAnimation
+                                {
+                                    searchingTwo = false
                                 }
                             }
                         }
@@ -63,17 +117,18 @@ struct ContentView: View
                     .cornerRadius(13)
                     
                     
-                    if searching == true
+                    // Список "Куда"
+                    if searchingTwo == true
                     {
                         ForEach(content.object!.city, id: \.id)
                         { city in
                             ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-                                return terminal.name.hasPrefix(searchText) || searchText == ""
+                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
                             }), id: \.id)
                             { terminal in
                                 Button(action: {
-                                    searchText = terminal.name
-                                    searching = false
+                                    searchTextTwo = terminal.name
+                                    searchingTwo = false
                                     UIApplication.shared.dismissKeyboard()
                                     whereId = terminal.id
                                 }, label: {
