@@ -73,14 +73,17 @@ struct ContentView: View
                                 return terminal.name.hasPrefix(searchTextOne) || searchTextOne == ""
                             }), id: \.id)
                             { terminal in
-                                Button(action: {
-                                    searchTextOne = terminal.name
-                                    searchingOne = false
-                                    UIApplication.shared.dismissKeyboard()
-                                    whereId = terminal.id
-                                }, label: {
-                                    Text(terminal.name)
-                                })
+                                if terminal.receiveCargo == true
+                                {
+                                    Button(action: {
+                                        searchTextOne = terminal.name
+                                        searchingOne = false
+                                        UIApplication.shared.dismissKeyboard()
+                                        whereId = terminal.id
+                                    }, label: {
+                                        Text(terminal.name)
+                                    })
+                                }
                             }
                         }
                     }
@@ -126,14 +129,17 @@ struct ContentView: View
                                 return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
                             }), id: \.id)
                             { terminal in
-                                Button(action: {
-                                    searchTextTwo = terminal.name
-                                    searchingTwo = false
-                                    UIApplication.shared.dismissKeyboard()
-                                    whereId = terminal.id
-                                }, label: {
-                                    Text(terminal.name)
-                                })
+                                if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
+                                {
+                                    Button(action: {
+                                        searchTextTwo = terminal.name
+                                        searchingTwo = false
+                                        UIApplication.shared.dismissKeyboard()
+                                        whereId = terminal.id
+                                    }, label: {
+                                        Text(terminal.name)
+                                    })
+                                }
                             }
                         }
                     }
