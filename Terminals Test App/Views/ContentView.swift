@@ -33,37 +33,43 @@ struct ContentView: View
             {
                 List
                 {
-                    // Откуда
-                    ZStack
-                    {
-                        Rectangle()
-                            .foregroundColor(Color("White"))
-                        HStack
-                        {
-                            Image(systemName: "magnifyingglass")
-                            TextField("Откуда", text: $searchTextOne)
-                            { startedEditing in
-                                if startedEditing
-                                {
-                                    withAnimation
-                                    {
-                                        searchingOne = true
-                                    }
-                                }
-                            }
-                            onCommit:
-                            {
-                                withAnimation
-                                {
-                                    searchingOne = false
-                                }
-                            }
-                        }
-                        .foregroundColor(.gray)
-                        .padding(.leading, 15)
-                    }
-                    .cornerRadius(13)
                     
+                    NavigationLink(destination: SecondView())
+                    {
+                        // Откуда
+                        ZStack
+                        {
+                            Rectangle()
+                                .foregroundColor(Color("White"))
+                            HStack
+                            {
+                                Image(systemName: "magnifyingglass")
+                                Text("Откуда")
+                                //TextField("Откуда", text: $searchTextOne)
+//                                { startedEditing in
+//                                    if startedEditing
+//                                    {
+//                                        withAnimation
+//                                        {
+//                                            searchingOne = true
+//                                        }
+//                                    }
+//                                }
+//                                onCommit:
+//                                {
+//                                    withAnimation
+//                                    {
+//                                        searchingOne = false
+//                                    }
+//                                }
+                            }
+                            .foregroundColor(.gray)
+                            .padding(.leading, 15)
+                        }
+                        .cornerRadius(13)
+                    }
+                    
+                                        
                     // Список "Откуда"
                     if searchingOne == true
                     {
@@ -89,36 +95,42 @@ struct ContentView: View
                     }
                     
                     // Куда
-                    ZStack
+                    NavigationLink(destination: SecondView())
                     {
-                        Rectangle()
-                            .foregroundColor(Color("White"))
-                        HStack
+                        ZStack
                         {
-                            Image(systemName: "magnifyingglass")
-                            TextField("Куда", text: $searchTextTwo)
-                            { startedEditing in
-                                if startedEditing
-                                {
-                                    withAnimation
-                                    {
-                                        searchingTwo = true
-                                    }
-                                }
-                            }
-                            onCommit:
+                            Rectangle()
+                                .foregroundColor(Color("White"))
+                            HStack
                             {
-                                withAnimation
-                                {
-                                    searchingTwo = false
-                                }
+                                Image(systemName: "magnifyingglass")
+                                Text("Куда")
+    //                            TextField("Куда", text: $searchTextTwo)
+    //                            { startedEditing in
+    //                                if startedEditing
+    //                                {
+    //                                    withAnimation
+    //                                    {
+    //                                        searchingTwo = true
+    //                                    }
+    //                                }
+    //                            }
+    //                            onCommit:
+    //                            {
+    //                                withAnimation
+    //                                {
+    //                                    searchingTwo = false
+    //                                }
+    //                            }
                             }
+                            .foregroundColor(.gray)
+                            .padding(.leading, 15)
                         }
-                        .foregroundColor(.gray)
-                        .padding(.leading, 15)
+                        .cornerRadius(13)
+
                     }
-                    .cornerRadius(13)
                     
+                                        
                     
                     // Список "Куда"
                     if searchingTwo == true

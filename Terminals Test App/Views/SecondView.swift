@@ -9,9 +9,22 @@ import SwiftUI
 
 struct SecondView: View
 {
+    
+    @State var from = ""
+    @State var to = ""
+    
+    @State var searchTextOne = ""
+    @State var searchTextTwo = ""
+    @State var searchingOne = false
+    @State var searchingTwo = false
+    
+    @State var whereId = "0"
+    
+    @StateObject var content = ContentModel()
+    
     var body: some View
     {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       Text("Hello World")
     }
 }
 
