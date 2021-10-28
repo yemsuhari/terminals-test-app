@@ -129,33 +129,34 @@ struct ContentView: View
                                         
                     
                     // Список "Куда"
-                    if searchingTwo == true
-                    {
-                        ForEach(content.object!.city, id: \.id)
-                        { city in
-                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
-                            }), id: \.id)
-                            { terminal in
-                                if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
-                                {
-                                    Button(action: {
-                                        searchTextTwo = terminal.name
-                                        searchingTwo = false
-                                        UIApplication.shared.dismissKeyboard()
-                                        whereId = terminal.id
-                                    }, label: {
-                                        Text(terminal.name)
-                                    })
-                                }
-                            }
-                        }
-                    }
+//                    if searchingTwo == true
+//                    {
+//                        ForEach(content.object!.city, id: \.id)
+//                        { city in
+//                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+//                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
+//                            }), id: \.id)
+//                            { terminal in
+//                                if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
+//                                {
+//                                    Button(action: {
+//                                        searchTextTwo = terminal.name
+//                                        searchingTwo = false
+//                                        UIApplication.shared.dismissKeyboard()
+//                                        whereId = terminal.id
+//                                    }, label: {
+//                                        Text(terminal.name)
+//                                    })
+//                                }
+//                            }
+//                        }
+//                    }
                     
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                         Text("Сохранить")
                             .foregroundColor(.blue)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .offset(x: -10)
                             .padding()
                     })
                 }

@@ -62,6 +62,31 @@ struct SecondView: View
                     }
                     
                     
+                    // Список "Откуда"
+                    if searchingOne == true
+                    {
+                        ForEach(content.object!.city, id: \.id)
+                        { city in
+                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+                                return terminal.name.hasPrefix(searchTextOne) || searchTextOne == ""
+                            }), id: \.id)
+                            { terminal in
+                                if terminal.receiveCargo == true
+                                {
+                                    Button(action: {
+                                        searchTextOne = terminal.name
+                                        searchingOne = false
+                                        UIApplication.shared.dismissKeyboard()
+                                        whereId = terminal.id
+                                    }, label: {
+                                        Text(terminal.name)
+                                    })
+                                }
+                            }
+                        }
+                    }
+                    
+                    
                     // "Куда"
                     ZStack
                     {
@@ -91,6 +116,31 @@ struct SecondView: View
                         }
                         .foregroundColor(.gray)
                         .padding(.leading, 15)
+                    }
+                    
+                    
+                    // Список "Куда"
+                    if searchingTwo == true
+                    {
+                        ForEach(content.object!.city, id: \.id)
+                        { city in
+                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
+                            }), id: \.id)
+                            { terminal in
+                                if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
+                                {
+                                    Button(action: {
+                                        searchTextTwo = terminal.name
+                                        searchingTwo = false
+                                        UIApplication.shared.dismissKeyboard()
+                                        whereId = terminal.id
+                                    }, label: {
+                                        Text(terminal.name)
+                                    })
+                                }
+                            }
+                        }
                     }
 
                     
