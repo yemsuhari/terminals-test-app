@@ -10,15 +10,15 @@ import SwiftUI
 struct SecondView: View
 {
     
-    @State var from = ""
-    @State var to = ""
-    
-    @State var searchTextOne = ""
-    @State var searchTextTwo = ""
-    @State var searchingOne = false
-    @State var searchingTwo = false
-    
-    @State var whereId = "0"
+//    @State var from = ""
+//    @State var to = ""
+//    
+//    @State var searchTextOne = ""
+//    @State var searchTextTwo = ""
+//    @State var searchingOne = false
+//    @State var searchingTwo = false
+//    
+//    @State var whereId = "0"
     
     @StateObject var content = ContentModel()
     
@@ -39,13 +39,13 @@ struct SecondView: View
                         HStack
                         {
                             Image(systemName: "magnifyingglass")
-                            TextField("Откуда", text: $searchTextOne)
+                            TextField("Откуда", text: $content.searchTextOne)
                             { startedEditing in
                                 if startedEditing
                                 {
                                     withAnimation
                                     {
-                                        searchingOne = true
+                                        content.searchingOne = true
                                     }
                                 }
                             }
@@ -53,7 +53,7 @@ struct SecondView: View
                             {
                                 withAnimation
                                 {
-                                    searchingOne = false
+                                    content.searchingOne = false
                                 }
                             }
                         }
@@ -63,21 +63,21 @@ struct SecondView: View
                     
                     
                     // Список "Откуда"
-                    if searchingOne == true
+                    if content.searchingOne == true
                     {
                         ForEach(content.object!.city, id: \.id)
                         { city in
                             ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-                                return terminal.name.hasPrefix(searchTextOne) || searchTextOne == ""
+                                return terminal.name.hasPrefix(content.searchTextOne) || content.searchTextOne == ""
                             }), id: \.id)
                             { terminal in
                                 if terminal.receiveCargo == true
                                 {
                                     Button(action: {
-                                        searchTextOne = terminal.name
-                                        searchingOne = false
+                                        content.searchTextOne = terminal.name
+                                        content.searchingOne = false
                                         UIApplication.shared.dismissKeyboard()
-                                        whereId = terminal.id
+                                        content.whereId = terminal.id
                                     }, label: {
                                         Text(terminal.name)
                                     })
@@ -95,13 +95,13 @@ struct SecondView: View
                         HStack
                         {
                             Image(systemName: "magnifyingglass")
-                            TextField("Куда", text: $searchTextTwo)
+                            TextField("Куда", text: $content.searchTextTwo)
                             { startedEditing in
                                 if startedEditing
                                 {
                                     withAnimation
                                     {
-                                        searchingTwo = true
+                                        content.searchingTwo = true
                                     }
                                 }
                             }
@@ -109,7 +109,7 @@ struct SecondView: View
                             {
                                 withAnimation
                                 {
-                                    searchingTwo = false
+                                    content.searchingTwo = false
                                 }
                             }
 
@@ -120,21 +120,21 @@ struct SecondView: View
                     
                     
                     // Список "Куда"
-                    if searchingTwo == true
+                    if content.searchingTwo == true
                     {
                         ForEach(content.object!.city, id: \.id)
                         { city in
                             ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
+                                return terminal.name.hasPrefix(content.searchTextTwo) || content.searchTextTwo == ""
                             }), id: \.id)
                             { terminal in
                                 if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
                                 {
                                     Button(action: {
-                                        searchTextTwo = terminal.name
-                                        searchingTwo = false
+                                        content.searchTextTwo = terminal.name
+                                        content.searchingTwo = false
                                         UIApplication.shared.dismissKeyboard()
-                                        whereId = terminal.id
+                                        content.whereId = terminal.id
                                     }, label: {
                                         Text(terminal.name)
                                     })
@@ -157,3 +157,4 @@ struct SecondView_Previews: PreviewProvider
         SecondView()
     }
 }
+

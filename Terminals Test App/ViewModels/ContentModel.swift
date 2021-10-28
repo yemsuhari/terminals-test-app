@@ -19,6 +19,20 @@ class ContentModel: ObservableObject
     @Published var allTerminals: [Terminal]?
     
     
+    // Перменные из ContentView
+    @Published var from = ""
+    @Published var to = ""
+    
+    @Published var searchTextOne = ""
+    @Published var searchTextTwo = ""
+    @Published var searchingOne = false
+    @Published var searchingTwo = false
+    
+    @Published var whereId = "0"
+
+    
+    
+    
     init()
     {
         parseJson()

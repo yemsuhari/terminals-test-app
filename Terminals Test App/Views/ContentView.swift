@@ -11,17 +11,6 @@ import Foundation
 struct ContentView: View
 {
     
-    @State var from = ""
-    @State var to = ""
-    
-    @State var searchTextOne = ""
-    @State var searchTextTwo = ""
-    @State var searchingOne = false
-    @State var searchingTwo = false
-    
-    @State var whereId = "0"
-        
-    
     
     @StateObject var content = ContentModel()
     
@@ -33,7 +22,6 @@ struct ContentView: View
             {
                 List
                 {
-                    
                     NavigationLink(destination: SecondView())
                     {
                         // Откуда
@@ -69,21 +57,21 @@ struct ContentView: View
                     
                                         
                     // Список "Откуда"
-                    if searchingOne == true
+                    if content.searchingOne == true
                     {
                         ForEach(content.object!.city, id: \.id)
                         { city in
                             ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-                                return terminal.name.hasPrefix(searchTextOne) || searchTextOne == ""
+                                return terminal.name.hasPrefix(content.searchTextOne) || content.searchTextOne == ""
                             }), id: \.id)
                             { terminal in
                                 if terminal.receiveCargo == true
                                 {
                                     Button(action: {
-                                        searchTextOne = terminal.name
-                                        searchingOne = false
+                                        content.searchTextOne = terminal.name
+                                        content.searchingOne = false
                                         UIApplication.shared.dismissKeyboard()
-                                        whereId = terminal.id
+                                        content.whereId = terminal.id
                                     }, label: {
                                         Text(terminal.name)
                                     })
