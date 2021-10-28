@@ -24,7 +24,79 @@ struct SecondView: View
     
     var body: some View
     {
-       Text("Hello World")
+        NavigationView
+        {
+            VStack
+            {
+                List
+                {
+                    // "Откуда"
+                    ZStack
+                    {
+                        Rectangle()
+                            .foregroundColor(.white)
+                        
+                        HStack
+                        {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Откуда", text: $searchTextOne)
+                            { startedEditing in
+                                if startedEditing
+                                {
+                                    withAnimation
+                                    {
+                                        searchingOne = true
+                                    }
+                                }
+                            }
+                            onCommit:
+                            {
+                                withAnimation
+                                {
+                                    searchingOne = false
+                                }
+                            }
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.leading, 15)
+                    }
+                    
+                    
+                    // "Куда"
+                    ZStack
+                    {
+                        Rectangle()
+                            .foregroundColor(Color("White"))
+                        HStack
+                        {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Куда", text: $searchTextTwo)
+                            { startedEditing in
+                                if startedEditing
+                                {
+                                    withAnimation
+                                    {
+                                        searchingTwo = true
+                                    }
+                                }
+                            }
+                            onCommit:
+                            {
+                                withAnimation
+                                {
+                                    searchingTwo = false
+                                }
+                            }
+
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.leading, 15)
+                    }
+
+                    
+                }
+            }
+        }
     }
 }
 

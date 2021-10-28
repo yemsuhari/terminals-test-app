@@ -43,9 +43,9 @@ struct ContentView: View
                                 .foregroundColor(Color("White"))
                             HStack
                             {
-                                Image(systemName: "magnifyingglass")
+                                //Image(systemName: "magnifyingglass")
                                 Text("Откуда")
-                                //TextField("Откуда", text: $searchTextOne)
+//                                TextField("Откуда", text: $searchTextOne)
 //                                { startedEditing in
 //                                    if startedEditing
 //                                    {
@@ -63,8 +63,6 @@ struct ContentView: View
 //                                    }
 //                                }
                             }
-                            .foregroundColor(.gray)
-                            .padding(.leading, 15)
                         }
                         .cornerRadius(13)
                     }
@@ -103,28 +101,26 @@ struct ContentView: View
                                 .foregroundColor(Color("White"))
                             HStack
                             {
-                                Image(systemName: "magnifyingglass")
+                                //Image(systemName: "magnifyingglass")
                                 Text("Куда")
-    //                            TextField("Куда", text: $searchTextTwo)
-    //                            { startedEditing in
-    //                                if startedEditing
-    //                                {
-    //                                    withAnimation
-    //                                    {
-    //                                        searchingTwo = true
-    //                                    }
-    //                                }
-    //                            }
-    //                            onCommit:
-    //                            {
-    //                                withAnimation
-    //                                {
-    //                                    searchingTwo = false
-    //                                }
-    //                            }
+//                                TextField("Куда", text: $searchTextTwo)
+//                                { startedEditing in
+//                                    if startedEditing
+//                                    {
+//                                        withAnimation
+//                                        {
+//                                            searchingTwo = true
+//                                        }
+//                                    }
+//                                }
+//                                onCommit:
+//                                {
+//                                    withAnimation
+//                                    {
+//                                        searchingTwo = false
+//                                    }
+//                                }
                             }
-                            .foregroundColor(.gray)
-                            .padding(.leading, 15)
                         }
                         .cornerRadius(13)
 
@@ -159,6 +155,7 @@ struct ContentView: View
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                         Text("Сохранить")
                             .foregroundColor(.blue)
+                            .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                     })
                 }
