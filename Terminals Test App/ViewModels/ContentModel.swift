@@ -23,8 +23,8 @@ class ContentModel: ObservableObject
     @Published var from = ""
     @Published var to = ""
     
-    @Published var searchTextOne = ""
-    @Published var searchTextTwo = ""
+    @Published var searchTextOne = "Откуда"
+    @Published var searchTextTwo = "Куда"
     @Published var searchingOne = false
     @Published var searchingTwo = false
     

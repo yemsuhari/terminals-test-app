@@ -20,7 +20,7 @@ struct SecondView: View
 //    
 //    @State var whereId = "0"
     
-    @StateObject var content = ContentModel()
+    @EnvironmentObject var content: ContentModel
     
     var body: some View
     {
@@ -60,6 +60,8 @@ struct SecondView: View
                         .foregroundColor(.gray)
                         .padding(.leading, 15)
                     }
+                    
+                    
                     
                     
                     // Список "Откуда"

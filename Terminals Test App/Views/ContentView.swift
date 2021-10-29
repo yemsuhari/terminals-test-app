@@ -11,8 +11,7 @@ import Foundation
 struct ContentView: View
 {
     
-    
-    @StateObject var content = ContentModel()
+    @EnvironmentObject var content: ContentModel
     
     var body: some View
     {
@@ -32,7 +31,7 @@ struct ContentView: View
                             HStack
                             {
                                 //Image(systemName: "magnifyingglass")
-                                Text("Откуда")
+                                Text(self.content.searchTextOne)
 //                                TextField("Откуда", text: $searchTextOne)
 //                                { startedEditing in
 //                                    if startedEditing
@@ -90,7 +89,7 @@ struct ContentView: View
                             HStack
                             {
                                 //Image(systemName: "magnifyingglass")
-                                Text("Куда")
+                                Text(content.searchTextTwo)
 //                                TextField("Куда", text: $searchTextTwo)
 //                                { startedEditing in
 //                                    if startedEditing
@@ -140,7 +139,8 @@ struct ContentView: View
 //                        }
 //                    }
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    
+                    Button(action:  {}, label: {
                         Text("Сохранить")
                             .foregroundColor(.blue)
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -160,7 +160,7 @@ struct ContentView: View
             }
             .navigationTitle("Терминалы")
         }
-        
+        .environmentObject(content)
     }
 }
 
