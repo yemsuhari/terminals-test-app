@@ -11,13 +11,7 @@ import Foundation
 struct ContentView: View
 {
     
-    @State var from = ""
-    @State var to = ""
-    
-    @StateObject var content = ContentModel()
-    
-    //let contentModelInstance = ContentModel()
-    
+    @EnvironmentObject var content: ContentModel
     
     var body: some View
     {
@@ -25,34 +19,148 @@ struct ContentView: View
         {
             VStack
             {
-                Form
+                List
                 {
-                    Section
+                    NavigationLink(destination: SecondView())
                     {
-                        TextField("Откуда", text: $from)
-                        TextField("Куда", text: $to)
+                        // Откуда
+                        ZStack
+                        {
+                            Rectangle()
+                                .foregroundColor(Color("White"))
+                            HStack
+                            {
+                                //Image(systemName: "magnifyingglass")
+                                Text(self.content.searchTextOne)
+//                                TextField("Откуда", text: $searchTextOne)
+//                                { startedEditing in
+//                                    if startedEditing
+//                                    {
+//                                        withAnimation
+//                                        {
+//                                            searchingOne = true
+//                                        }
+//                                    }
+//                                }
+//                                onCommit:
+//                                {
+//                                    withAnimation
+//                                    {
+//                                        searchingOne = false
+//                                    }
+//                                }
+                            }
+                        }
+                        .cornerRadius(13)
                     }
                     
-                    Section
+                                        
+                    // Список "Откуда"
+                    if content.searchingOne == true
                     {
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Text("Сохранить")
-                        })
-                        
+                        ForEach(content.object!.city, id: \.id)
+                        { city in
+                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+                                return terminal.name.hasPrefix(content.searchTextOne) || content.searchTextOne == ""
+                            }), id: \.id)
+                            { terminal in
+                                if terminal.receiveCargo == true
+                                {
+                                    Button(action: {
+                                        content.searchTextOne = terminal.name
+                                        content.searchingOne = false
+                                        UIApplication.shared.dismissKeyboard()
+                                        content.whereId = terminal.id
+                                    }, label: {
+                                        Text(terminal.name)
+                                    })
+                                }
+                            }
+                        }
                     }
                     
+                    // Куда
+                    NavigationLink(destination: SecondView())
+                    {
+                        ZStack
+                        {
+                            Rectangle()
+                                .foregroundColor(Color("White"))
+                            HStack
+                            {
+                                //Image(systemName: "magnifyingglass")
+                                Text(content.searchTextTwo)
+//                                TextField("Куда", text: $searchTextTwo)
+//                                { startedEditing in
+//                                    if startedEditing
+//                                    {
+//                                        withAnimation
+//                                        {
+//                                            searchingTwo = true
+//                                        }
+//                                    }
+//                                }
+//                                onCommit:
+//                                {
+//                                    withAnimation
+//                                    {
+//                                        searchingTwo = false
+//                                    }
+//                                }
+                            }
+                        }
+                        .cornerRadius(13)
+
+                    }
+                    
+                                        
+                    
+                    // Список "Куда"
+//                    if searchingTwo == true
+//                    {
+//                        ForEach(content.object!.city, id: \.id)
+//                        { city in
+//                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
+//                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
+//                            }), id: \.id)
+//                            { terminal in
+//                                if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
+//                                {
+//                                    Button(action: {
+//                                        searchTextTwo = terminal.name
+//                                        searchingTwo = false
+//                                        UIApplication.shared.dismissKeyboard()
+//                                        whereId = terminal.id
+//                                    }, label: {
+//                                        Text(terminal.name)
+//                                    })
+//                                }
+//                            }
+//                        }
+//                    }
+                    
+                    
+                    Button(action:  {}, label: {
+                        Text("Сохранить")
+                            .foregroundColor(.blue)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .offset(x: -10)
+                            .padding()
+                    })
                 }
                 
-                if content.object?.city.first?.name != nil
-                {
-                    Text(content.object!.city.first!.name)
-                        .padding(100)
-                }
+                // пример использования информации из object
+//                if content.object?.city.first?.name != nil
+//                {
+//                    Text(content.object!.city.first!.name)
+//                        .padding(100)
+//                }
                 
                 
             }
             .navigationTitle("Терминалы")
         }
+        .environmentObject(content)
     }
 }
 
@@ -63,3 +171,11 @@ struct ContentView_Previews: PreviewProvider
         ContentView()
     }
 }
+
+extension UIApplication
+{
+     func dismissKeyboard()
+    {
+         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+     }
+ }

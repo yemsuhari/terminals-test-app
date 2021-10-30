@@ -10,12 +10,15 @@ import SwiftUI
 @main
 struct Terminals_Test_App: App
 {
+    
+    @StateObject var content = ContentModel()
+    
     var body: some Scene
     {
         WindowGroup
         {
             ContentView()
-                .environmentObject(ContentModel())
+                .environmentObject(content)
         }
     }
 }
