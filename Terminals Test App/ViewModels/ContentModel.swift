@@ -28,7 +28,8 @@ class ContentModel: ObservableObject
     @Published var searchingOne = false
     @Published var searchingTwo = false
     
-    @Published var whereId = "0"
+    @Published var fromId = "0"
+    @Published var toId = "0"
 
     
     
