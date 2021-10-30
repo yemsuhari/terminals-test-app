@@ -79,7 +79,7 @@ struct SecondView: View
                                         content.searchTextOne = terminal.name
                                         content.searchingOne = false
                                         UIApplication.shared.dismissKeyboard()
-                                        content.whereId = terminal.id
+                                        content.fromId = terminal.id
                                     }, label: {
                                         Text(terminal.name)
                                     })
@@ -136,7 +136,7 @@ struct SecondView: View
                                         content.searchTextTwo = terminal.name
                                         content.searchingTwo = false
                                         UIApplication.shared.dismissKeyboard()
-                                        content.whereId = terminal.id
+                                        content.toId = terminal.id
                                     }, label: {
                                         Text(terminal.name)
                                     })

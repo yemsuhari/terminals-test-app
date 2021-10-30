@@ -24,122 +24,95 @@ struct ContentView: View
                     NavigationLink(destination: SecondView())
                     {
                         // Откуда
-                        ZStack
+                        VStack
                         {
-                            Rectangle()
-                                .foregroundColor(Color("White"))
-                            HStack
+                            ZStack
                             {
-                                //Image(systemName: "magnifyingglass")
-                                Text(self.content.searchTextOne)
-//                                TextField("Откуда", text: $searchTextOne)
-//                                { startedEditing in
-//                                    if startedEditing
-//                                    {
-//                                        withAnimation
-//                                        {
-//                                            searchingOne = true
-//                                        }
-//                                    }
-//                                }
-//                                onCommit:
-//                                {
-//                                    withAnimation
-//                                    {
-//                                        searchingOne = false
-//                                    }
-//                                }
-                            }
-                        }
-                        .cornerRadius(13)
-                    }
-                    
-                                        
-                    // Список "Откуда"
-                    if content.searchingOne == true
-                    {
-                        ForEach(content.object!.city, id: \.id)
-                        { city in
-                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-                                return terminal.name.hasPrefix(content.searchTextOne) || content.searchTextOne == ""
-                            }), id: \.id)
-                            { terminal in
-                                if terminal.receiveCargo == true
+                                Rectangle()
+                                    .foregroundColor(Color("White"))
+                                HStack
                                 {
-                                    Button(action: {
-                                        content.searchTextOne = terminal.name
-                                        content.searchingOne = false
-                                        UIApplication.shared.dismissKeyboard()
-                                        content.whereId = terminal.id
-                                    }, label: {
-                                        Text(terminal.name)
-                                    })
+                                    Text(self.content.searchTextOne)
                                 }
                             }
+                            
+                            // Подробности
+                            ForEach(content.object!.city, id: \.id)
+                            { city in
+                                ForEach(city.terminals.terminal, id: \.id)
+                                { terminal in
+                                    if content.fromId == terminal.id
+                                    {
+                                        Text(terminal.address)
+                                            .padding(.top)
+                                            .padding(.bottom)
+                
+                                        Text("Время для прибытия: ")
+                                            .font(.system(size: 15))
+                                        Text(terminal.calcSchedule.arrival)
+                                            .font(.system(size: 15))
+                                        
+                                        Text("Время для отбытия: ")
+                                            .font(.system(size: 15))
+                                        Text(terminal.calcSchedule.derival)
+                                            .font(.system(size: 15))
+                                        
+                                    }
+                                }
+                            }
+
+                            
                         }
+                        
+                        
                     }
+                    
                     
                     // Куда
                     NavigationLink(destination: SecondView())
                     {
-                        ZStack
+                        VStack
                         {
-                            Rectangle()
-                                .foregroundColor(Color("White"))
-                            HStack
+                            ZStack
                             {
-                                //Image(systemName: "magnifyingglass")
-                                Text(content.searchTextTwo)
-//                                TextField("Куда", text: $searchTextTwo)
-//                                { startedEditing in
-//                                    if startedEditing
-//                                    {
-//                                        withAnimation
-//                                        {
-//                                            searchingTwo = true
-//                                        }
-//                                    }
-//                                }
-//                                onCommit:
-//                                {
-//                                    withAnimation
-//                                    {
-//                                        searchingTwo = false
-//                                    }
-//                                }
+                                Rectangle()
+                                    .foregroundColor(Color("White"))
+                                HStack
+                                {
+                                    Text(content.searchTextTwo)
+                                }
                             }
-                        }
-                        .cornerRadius(13)
+                            
+                            ForEach(content.object!.city, id: \.id)
+                            { city in
+                                ForEach(city.terminals.terminal, id: \.id)
+                                { terminal in
+                                    if content.toId == terminal.id
+                                    {
+                                        Text(terminal.address)
+                                            .padding(.top)
+                                            .padding(.bottom)
+                
+                                        Text("Время для прибытия: ")
+                                            .font(.system(size: 15))
+                                        Text(terminal.calcSchedule.arrival)
+                                            .font(.system(size: 15))
+                                        
+                                        Text("Время для отбытия: ")
+                                            .font(.system(size: 15))
+                                        Text(terminal.calcSchedule.derival)
+                                            .font(.system(size: 15))
+                                        
+                                    }
+                                }
+                            }
 
+                        }
                     }
                     
                                         
                     
-                    // Список "Куда"
-//                    if searchingTwo == true
-//                    {
-//                        ForEach(content.object!.city, id: \.id)
-//                        { city in
-//                            ForEach(city.terminals.terminal.filter({ (terminal: Terminal) -> Bool in
-//                                return terminal.name.hasPrefix(searchTextTwo) || searchTextTwo == ""
-//                            }), id: \.id)
-//                            { terminal in
-//                                if (terminal.giveoutCargo == true) && (terminal.terminalDefault == true)
-//                                {
-//                                    Button(action: {
-//                                        searchTextTwo = terminal.name
-//                                        searchingTwo = false
-//                                        UIApplication.shared.dismissKeyboard()
-//                                        whereId = terminal.id
-//                                    }, label: {
-//                                        Text(terminal.name)
-//                                    })
-//                                }
-//                            }
-//                        }
-//                    }
-                    
-                    
+                    // Кнопка "Сохранить"
                     Button(action:  {}, label: {
                         Text("Сохранить")
                             .foregroundColor(.blue)
@@ -148,14 +121,7 @@ struct ContentView: View
                             .padding()
                     })
                 }
-                
-                // пример использования информации из object
-//                if content.object?.city.first?.name != nil
-//                {
-//                    Text(content.object!.city.first!.name)
-//                        .padding(100)
-//                }
-                
+                                
                 
             }
             .navigationTitle("Терминалы")
