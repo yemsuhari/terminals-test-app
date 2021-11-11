@@ -8,8 +8,9 @@
 import Foundation
 import RealmSwift
 import SwiftUI
+import CoreLocation
 
-class ContentModel: ObservableObject
+class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
 
 {
     @Published var object : MainObject?
@@ -19,7 +20,12 @@ class ContentModel: ObservableObject
     @Published var allTerminals: [Terminal]?
     
     
-    // Перменные из ContentView
+    // CoreLocation
+    var locationManager = CLLocationManager()
+    @Published var userLocation:CLLocation?
+    
+    
+    // Перменные из Views
     @Published var from = ""
     @Published var to = ""
     
@@ -34,9 +40,21 @@ class ContentModel: ObservableObject
     
     
     
-    init()
+    override init()
     {
+        // Init method of NSObject
+        super.init()
+        
         parseJson()
+        
+        // CoreLocation staff
+        
+        // Set the content model as the delegateof the location manager
+        locationManager.delegate = self
+        
+        // Request permission from the user
+        locationManager.requestWhenInUseAuthorization()
+        
     }
     
     func parseJson()
@@ -102,10 +120,42 @@ class ContentModel: ObservableObject
         }
         
     }
+    
+    // Location Manager Delegate Method
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
+    {
+        if locationManager.authorizationStatus == .authorizedAlways ||
+            locationManager.authorizationStatus == .authorizedWhenInUse
+        {
+            // We have permission
+            // Start geolocating the user, after we get permission
+            locationManager.startUpdatingLocation()
+            
+        }
+        else if locationManager.authorizationStatus == .denied
+        {
+            // We don't have permission
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        // Gives us the location of the user
+        guard locations.first != nil
+        else
+        {
+            //  Что-то пошло не так
+            return
+        }
+        userLocation = locations.first!
+        
+        // Stop requesting the location after we get in once
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func findDistance(terminalLatitude:Double, terminalLongtitude:Double) -> Double
+    {
+        let terminalLocation = CLLocation(latitude: terminalLatitude, longitude: terminalLongtitude)
+        return userLocation?.distance(from: terminalLocation) ?? 100
+    }
 }
-
-
-
-
-
-//print(Realm.Configuration.defaultConfiguration.fileURL)

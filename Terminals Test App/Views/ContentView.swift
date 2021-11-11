@@ -7,11 +7,14 @@
 
 import SwiftUI
 import Foundation
+import CoreLocation
 
 struct ContentView: View
 {
     
     @EnvironmentObject var content: ContentModel
+    
+    @State var currentLocation = CLLocationManager()
     
     var body: some View
     {
@@ -48,14 +51,28 @@ struct ContentView: View
                                             .padding(.bottom)
                 
                                         Text("Время для прибытия: ")
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                         Text(terminal.calcSchedule.arrival)
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                         
                                         Text("Время для отбытия: ")
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                         Text(terminal.calcSchedule.derival)
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
+                                            .padding(.bottom)
+                                        
                                         
                                     }
                                 }
@@ -94,15 +111,26 @@ struct ContentView: View
                                             .padding(.bottom)
                 
                                         Text("Время для прибытия: ")
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                         Text(terminal.calcSchedule.arrival)
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                         
                                         Text("Время для отбытия: ")
-                                            .font(.system(size: 15))
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                         Text(terminal.calcSchedule.derival)
-                                            .font(.system(size: 15))
-                                        
+                                            //.font(.system(size: 1000))
+                                            .scaledToFit()
+                                            .minimumScaleFactor(0.01)
+                                            .lineLimit(1)
                                     }
                                 }
                             }
