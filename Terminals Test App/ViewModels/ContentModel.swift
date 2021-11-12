@@ -49,7 +49,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         
         // CoreLocation staff
         
-        // Set the content model as the delegateof the location manager
+        // Set the content model as the delegate of the location manager
         locationManager.delegate = self
         
         // Request permission from the user
@@ -122,7 +122,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     }
     
     // Location Manager Delegate Method
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager)
     {
         if locationManager.authorizationStatus == .authorizedAlways ||
             locationManager.authorizationStatus == .authorizedWhenInUse
@@ -153,9 +153,10 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         locationManager.stopUpdatingLocation()
     }
     
-    func findDistance(terminalLatitude:Double, terminalLongtitude:Double) -> Double
+    func findDistance(terminalLatitude:Double, terminalLongitude:Double) -> String
     {
-        let terminalLocation = CLLocation(latitude: terminalLatitude, longitude: terminalLongtitude)
-        return userLocation?.distance(from: terminalLocation) ?? 100
+        let terminalLocation = CLLocation(latitude: terminalLatitude, longitude: terminalLongitude)
+        var finalDistance = (userLocation?.distance(from: terminalLocation))!
+        return String(Int(finalDistance)/1000)
     }
 }

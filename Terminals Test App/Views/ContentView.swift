@@ -71,7 +71,18 @@ struct ContentView: View
                                             .scaledToFit()
                                             .minimumScaleFactor(0.01)
                                             .lineLimit(1)
-                                            .padding(.bottom)
+                                        
+                                        
+                                        // Расстояние до терминалов
+                                        var distaceOne:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
+                                        
+                                        Image(systemName: "map")
+                                            .foregroundColor(.blue)
+                                            .imageScale(.large)
+                                            .padding(.top)
+                                        Text("Растояние до терминала: ")
+                                        Text("\(distaceOne) километров")
+                                        
                                         
                                         
                                     }
@@ -131,6 +142,17 @@ struct ContentView: View
                                             .scaledToFit()
                                             .minimumScaleFactor(0.01)
                                             .lineLimit(1)
+                                        
+                                        
+                                        // Расстояние до терминалов
+                                        var distaceTwo:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
+                                        
+                                        Image(systemName: "map")
+                                            .foregroundColor(.blue)
+                                            .imageScale(.large)
+                                            .padding(.top)
+                                        Text("Растояние до терминала: ")
+                                        Text("\(distaceTwo) километров")
                                     }
                                 }
                             }
