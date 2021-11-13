@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		6E5A3CB726AEC58D0085F482 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A3CB626AEC58D0085F482 /* Assets.xcassets */; };
 		6E5A3CBA26AEC58D0085F482 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A3CB926AEC58D0085F482 /* Preview Assets.xcassets */; };
 		6E5A3CC626AED9970085F482 /* MainView1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5A3CC526AED9970085F482 /* MainView1.png */; };
+		6E5A726C273EB185006070CC /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 6E5A726B273EB185006070CC /* PopupView */; };
 		6EB30E8626B98D99000C78CC /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB30E8526B98D99000C78CC /* ContentModel.swift */; };
 		6ECA8C4C26B7F723007E5F12 /* models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA8C4B26B7F723007E5F12 /* models.swift */; };
 		EA12BBED7B0D1BC781151922 /* Pods_Terminals_Test_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945FC9AFAE8E1F79AC2BC7DC /* Pods_Terminals_Test_App.framework */; };
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E5A726C273EB185006070CC /* PopupView in Frameworks */,
 				EA12BBED7B0D1BC781151922 /* Pods_Terminals_Test_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +160,9 @@
 			dependencies = (
 			);
 			name = "Terminals Test App";
+			packageProductDependencies = (
+				6E5A726B273EB185006070CC /* PopupView */,
+			);
 			productName = "Terminals Test App";
 			productReference = 6E5A3CAF26AEC58D0085F482 /* Terminals Test App.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +190,9 @@
 				Base,
 			);
 			mainGroup = 6E5A3CA626AEC58D0085F482;
+			packageReferences = (
+				6E5A726A273EB185006070CC /* XCRemoteSwiftPackageReference "PopupView" */,
+			);
 			productRefGroup = 6E5A3CB026AEC58D0085F482 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -450,6 +458,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6E5A726A273EB185006070CC /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E5A726B273EB185006070CC /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E5A726A273EB185006070CC /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E5A3CA726AEC58D0085F482 /* Project object */;
 }
