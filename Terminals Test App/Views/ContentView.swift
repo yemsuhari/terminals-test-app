@@ -59,23 +59,34 @@ struct ContentView: View
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
-                                            Text(terminal.calcSchedule.arrival)
+                                            
+                                            let arrivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
+                                            Text(arrivalStrings[0])
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
+                                            Text(arrivalStrings[1])
+                                                .padding(.bottom)
                                             
                                             Text("Время для отбытия: ")
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
-                                            Text(terminal.calcSchedule.derival)
+                                            
+                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
+                                            Text(derivalStrings[0])
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
-                                            
+                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
+                                            Text(derivalStrings[1])
+                                                //.font(.system(size: 1000))
+                                                .scaledToFit()
+                                                .minimumScaleFactor(0.01)
+                                                .lineLimit(1)
                                             
                                             // Расстояние до терминалов
                                             var distaceOne:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
@@ -86,7 +97,6 @@ struct ContentView: View
                                                 .padding(.top)
                                             Text("Растояние до терминала: ")
                                             Text("\(distaceOne) километров")
-                                            
                                             
                                             
                                         }
@@ -125,28 +135,41 @@ struct ContentView: View
                                                 .padding(.top)
                                                 .padding(.bottom)
                     
+                                            
                                             Text("Время для прибытия: ")
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
-                                            Text(terminal.calcSchedule.arrival)
+                                            
+                                            let arrivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
+                                            Text(arrivalStrings[0])
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
+                                            Text(arrivalStrings[1])
+                                                .padding(.bottom)
                                             
                                             Text("Время для отбытия: ")
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
-                                            Text(terminal.calcSchedule.derival)
+                                            
+                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
+                                            Text(derivalStrings[0])
                                                 //.font(.system(size: 1000))
                                                 .scaledToFit()
                                                 .minimumScaleFactor(0.01)
                                                 .lineLimit(1)
-                                            
+                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
+                                            Text(derivalStrings[1])
+                                                //.font(.system(size: 1000))
+                                                .scaledToFit()
+                                                .minimumScaleFactor(0.01)
+                                                .lineLimit(1)
+
                                             
                                             // Расстояние до терминалов
                                             var distaceTwo:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
