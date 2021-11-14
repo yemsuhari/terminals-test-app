@@ -25,7 +25,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var userLocation:CLLocation?
     
     
-    // Перменные из Views
+    // Переменные из Views
     @Published var from = ""
     @Published var to = ""
     
@@ -37,8 +37,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var fromId = "0"
     @Published var toId = "0"
 
-    
-    
+    // Current Terminals
+    @Published var currentTerminals = CurrentTerminals()
     
     override init()
     {
@@ -64,7 +64,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         {
 
             // Get the path to the JSON file
-            let urlString = "https://api.dellin.ru/static/catalog/terminals_v3.jsons"
+            let urlString = "https://api.dellin.ru/static/catalog/terminals_v3.json"
             
             // Create a URL object
             guard let url = URL(string: urlString) else { return }
@@ -75,12 +75,12 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
             // Decode the data
             self.object = try decoder.decode(MainObject.self, from: dataObject)
             
-            // Все терминалы
-            object!.city.forEach
-            { city in
-                var newTerminals = city.terminals.terminal
-                allTerminals! += newTerminals
-            }
+//            // Все терминалы
+//            object!.city.forEach
+//            { city in
+//                var newTerminals = city.terminals.terminal
+//                allTerminals! += newTerminals
+//            }
             
             // Saving data to Realm database
             savedData.parsedData = dataObject
@@ -105,11 +105,11 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
                     self.object = try decoder.decode(MainObject.self, from: datas.first!.parsedData)
                 }
                 // Все терминалы
-                object!.city.forEach
-                { city in
-                    var newTerminals = city.terminals.terminal
-                    allTerminals?.append(contentsOf: newTerminals )
-                }
+//                object!.city.forEach
+//                { city in
+//                    var newTerminals = city.terminals.terminal
+//                    allTerminals?.append(contentsOf: newTerminals )
+//                }
             }
             catch
             {
@@ -144,7 +144,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         guard locations.first != nil
         else
         {
-            //  Что-то пошло не так
+            //  Что-то пошло не
             return
         }
         userLocation = locations.first!
@@ -159,4 +159,17 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         var finalDistance = (userLocation?.distance(from: terminalLocation))!
         return String(Int(finalDistance)/1000)
     }
+    
+    
+    func setFirstTerminal(terminalId:String)
+    {
+        currentTerminals.firstTerminalId = terminalId
+        return
+    }
+    
+    func setSecondTerminal(terminalId:String)
+    {
+        currentTerminals.secondTerminalId = terminalId
+    }
+    
 }

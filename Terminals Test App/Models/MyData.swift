@@ -12,3 +12,9 @@ class MyData: Object
 {
    @objc dynamic var parsedData = Data()
 }
+
+class CurrentTerminals: Object
+{
+    @objc dynamic var firstTerminalId:String = ""
+    @objc dynamic var secondTerminalId:String = ""
+}

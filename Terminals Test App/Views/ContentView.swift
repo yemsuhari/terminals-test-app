@@ -20,9 +20,7 @@ struct ContentView: View
     
     @State var currentLocation = CLLocationManager()
     
-    //@State private var region = MKCoordinateRegion()
-    @State var region:MKCoordinateRegion  = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-    
+
     var body: some View
     {
         ZStack
@@ -58,17 +56,23 @@ struct ContentView: View
                                 // Подробности
                                 ForEach(content.object!.city, id: \.id)
                                 { city in
+                                    
                                     ForEach(city.terminals.terminal, id: \.id)
                                     { terminal in
+                                        
+                                        
                                         if content.fromId == terminal.id
                                         {
+                                            
+                                
+                                            
                                             Group
                                             {
                                                 Text(terminal.address)
                                                     .padding(.top)
                                                     .padding(.bottom)
-                                    
-                                                
+
+ 
                                                 Image(systemName: "stopwatch")
                                                     .foregroundColor(.blue)
                                                     .imageScale(.large)
@@ -114,11 +118,6 @@ struct ContentView: View
                                                 .padding(.top)
                                             Text("Растояние до терминала: ")
                                             Text("\(distaceOne) километров")
-                                            
-                                            //region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(terminal.latitude)!,longitude: Double(terminal.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-                                            //Map(coordinateRegion: region)
-                                            //region.center = (CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275))
-                                            
                                             
                                             
                                             Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(terminal.latitude)!, longitude: Double(terminal.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))), interactionModes: [])
@@ -231,6 +230,28 @@ struct ContentView: View
                             action:
                             {
                                 self.showingPopup = true
+                                
+                                
+                                do
+                                {
+                                    let realm = try Realm()
+                                    
+                                    
+                                    
+                                    realm.beginWrite()
+                                    content.setFirstTerminal(terminalId: content.fromId)
+                                    content.setSecondTerminal(terminalId: content.toId)
+                                    realm.add(content.currentTerminals)
+                                    try realm.commitWrite()
+                                    
+                                }
+                                catch
+                                {
+                                   print("realm error")
+                                }
+                               
+
+                                
                             },
                             label:
                             {
