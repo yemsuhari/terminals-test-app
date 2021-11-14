@@ -9,6 +9,8 @@ import SwiftUI
 import Foundation
 import CoreLocation
 import PopupView
+import MapKit
+import RealmSwift
 
 struct ContentView: View
 {
@@ -17,6 +19,9 @@ struct ContentView: View
     @EnvironmentObject var content: ContentModel
     
     @State var currentLocation = CLLocationManager()
+    
+    //@State private var region = MKCoordinateRegion()
+    @State var region:MKCoordinateRegion  = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     var body: some View
     {
@@ -114,6 +119,16 @@ struct ContentView: View
                                             Text("Растояние до терминала: ")
                                             Text("\(distaceOne) километров")
                                             
+                                            //region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(terminal.latitude)!,longitude: Double(terminal.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                                            //Map(coordinateRegion: region)
+                                            //region.center = (CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275))
+                                            
+                                            
+                                            
+                                            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(terminal.latitude)!, longitude: Double(terminal.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))), interactionModes: [])
+                                                        .frame(width: 250, height: 190)
+                                                        .cornerRadius(12)
+                                            
                                         }
                                     }
                                 }
@@ -176,11 +191,6 @@ struct ContentView: View
                                                 
                                                 let derivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
                                                 Text(derivalStrings[0])
-                                                    //.font(.system(size: 1000))
-                                                    .scaledToFit()
-                                                    .minimumScaleFactor(0.01)
-                                                    .lineLimit(1)
-                                                
                                                 Text(derivalStrings[1])
                                                     //.font(.system(size: 1000))
                                                     .scaledToFit()
@@ -198,6 +208,10 @@ struct ContentView: View
                                                 .padding(.top)
                                             Text("Растояние до терминала: ")
                                             Text("\(distaceTwo) километров")
+                                            
+                                            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(terminal.latitude)!, longitude: Double(terminal.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))), interactionModes: [])
+                                                        .frame(width: 250, height: 190)
+                                                        .cornerRadius(12)
                                         }
                                     }
                                 }
