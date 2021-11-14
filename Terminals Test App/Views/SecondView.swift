@@ -43,6 +43,7 @@ struct SecondView: View
                             { startedEditing in
                                 if startedEditing
                                 {
+                                    content.searchTextOne = ""
                                     withAnimation
                                     {
                                         content.searchingOne = true
@@ -101,6 +102,7 @@ struct SecondView: View
                             { startedEditing in
                                 if startedEditing
                                 {
+                                    content.searchTextTwo = ""
                                     withAnimation
                                     {
                                         content.searchingTwo = true
