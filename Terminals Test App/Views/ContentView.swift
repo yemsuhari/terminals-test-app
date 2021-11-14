@@ -33,6 +33,12 @@ struct ContentView: View
                             // Откуда
                             VStack
                             {
+                                
+                                Image(systemName: "building.2.crop.circle")
+                                    .foregroundColor(.blue)
+                                    .imageScale(.large)
+                                
+                                
                                 ZStack
                                 {
                                     Rectangle()
@@ -43,6 +49,7 @@ struct ContentView: View
                                     }
                                 }
                                 
+                                
                                 // Подробности
                                 ForEach(content.object!.city, id: \.id)
                                 { city in
@@ -50,46 +57,55 @@ struct ContentView: View
                                     { terminal in
                                         if content.fromId == terminal.id
                                         {
-                                            Text(terminal.address)
-                                                .padding(.top)
-                                                .padding(.bottom)
-                    
-                                            Text("Время для прибытия: ")
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            
-                                            let arrivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
-                                            Text(arrivalStrings[0])
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            Text(arrivalStrings[1])
-                                                .padding(.bottom)
-                                            
-                                            Text("Время для отбытия: ")
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            
-                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
-                                            Text(derivalStrings[0])
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
-                                            Text(derivalStrings[1])
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
+                                            Group
+                                            {
+                                                Text(terminal.address)
+                                                    .padding(.top)
+                                                    .padding(.bottom)
+                                    
+                                                
+                                                Image(systemName: "stopwatch")
+                                                    .foregroundColor(.blue)
+                                                    .imageScale(.large)
+                                                
+                                                Text("Время для прибытия: ")
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                                                
+                                                let arrivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
+                                                Text(arrivalStrings[0])
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                                                Text(arrivalStrings[1])
+                                                    .padding(.bottom)
+                                                
+                                                Text("Время для отбытия: ")
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                                                
+                                                let derivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
+                                                Text(derivalStrings[0])
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                        
+                                                Text(derivalStrings[1])
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                                                
+                                            }
                                             
                                             // Расстояние до терминалов
-                                            var distaceOne:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
+                                            let distaceOne:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
                                             
                                             Image(systemName: "map")
                                                 .foregroundColor(.blue)
@@ -97,7 +113,6 @@ struct ContentView: View
                                                 .padding(.top)
                                             Text("Растояние до терминала: ")
                                             Text("\(distaceOne) километров")
-                                            
                                             
                                         }
                                     }
@@ -115,6 +130,11 @@ struct ContentView: View
                         {
                             VStack
                             {
+                                
+                                Image(systemName: "building.2.crop.circle")
+                                    .foregroundColor(.blue)
+                                    .imageScale(.large)
+                                
                                 ZStack
                                 {
                                     Rectangle()
@@ -131,45 +151,43 @@ struct ContentView: View
                                     { terminal in
                                         if content.toId == terminal.id
                                         {
-                                            Text(terminal.address)
-                                                .padding(.top)
-                                                .padding(.bottom)
-                    
-                                            
-                                            Text("Время для прибытия: ")
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            
-                                            let arrivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
-                                            Text(arrivalStrings[0])
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            Text(arrivalStrings[1])
-                                                .padding(.bottom)
-                                            
-                                            Text("Время для отбытия: ")
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            
-                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
-                                            Text(derivalStrings[0])
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
-                                            let derivalStrings = terminal.calcSchedule.arrival.split(separator: " ")
-                                            Text(derivalStrings[1])
-                                                //.font(.system(size: 1000))
-                                                .scaledToFit()
-                                                .minimumScaleFactor(0.01)
-                                                .lineLimit(1)
+                                            Group
+                                            {
+                                                Text(terminal.address)
+                                                    .padding(.top)
+                                                    .padding(.bottom)
+                        
+                                                Image(systemName: "stopwatch")
+                                                    .foregroundColor(.blue)
+                                                    .imageScale(.large)
+                                                
+                                                Text("Время для прибытия: ")
+                                                
+                                                let arrivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
+                                                Text(arrivalStrings[0])
+                                                Text(arrivalStrings[1])
+                                                    .padding(.bottom)
+                                                
+                                                Text("Время для отбытия: ")
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                                                
+                                                let derivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
+                                                Text(derivalStrings[0])
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
+                                                
+                                                Text(derivalStrings[1])
+                                                    //.font(.system(size: 1000))
+                                                    .scaledToFit()
+                                                    .minimumScaleFactor(0.01)
+                                                    .lineLimit(1)
 
+                                            }
                                             
                                             // Расстояние до терминалов
                                             var distaceTwo:String = content.findDistance(terminalLatitude: Double(terminal.latitude)!, terminalLongitude: Double(terminal.longitude)!)
@@ -243,5 +261,5 @@ extension UIApplication
      func dismissKeyboard()
     {
          sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-     }
+    }
  }
