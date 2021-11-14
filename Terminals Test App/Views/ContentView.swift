@@ -81,12 +81,12 @@ struct ContentView: View
                                                 
                                                 let arrivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
                                                 Text(arrivalStrings[0])
-                                                    //.font(.system(size: 1000))
-                                                    .scaledToFit()
-                                                    .minimumScaleFactor(0.01)
-                                                    .lineLimit(1)
-                                                Text(arrivalStrings[1])
-                                                    .padding(.bottom)
+                                                let isArrivalIndexValid = arrivalStrings.indices.contains(1)
+                                                if isArrivalIndexValid
+                                                {
+                                                    Text(arrivalStrings[1])
+                                                        .padding(.bottom)
+                                                }
                                                 
                                                 Text("Время для отбытия: ")
                                                     //.font(.system(size: 1000))
@@ -94,18 +94,14 @@ struct ContentView: View
                                                     .minimumScaleFactor(0.01)
                                                     .lineLimit(1)
                                                 
-                                                let derivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
+                                                let derivalStrings = terminal.calcSchedule.derival.split(separator: ";")
                                                 Text(derivalStrings[0])
-                                                    //.font(.system(size: 1000))
-                                                    .scaledToFit()
-                                                    .minimumScaleFactor(0.01)
-                                                    .lineLimit(1)
-                        
-                                                Text(derivalStrings[1])
-                                                    //.font(.system(size: 1000))
-                                                    .scaledToFit()
-                                                    .minimumScaleFactor(0.01)
-                                                    .lineLimit(1)
+                                                let isDerivalIndexValid = derivalStrings.indices.contains(1)
+                                                if isDerivalIndexValid
+                                                {
+                                                    Text(derivalStrings[1])
+                                                        .padding(.bottom)
+                                                }
                                                 
                                             }
                                             
@@ -180,8 +176,16 @@ struct ContentView: View
                                                 
                                                 let arrivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
                                                 Text(arrivalStrings[0])
-                                                Text(arrivalStrings[1])
-                                                    .padding(.bottom)
+                                                let isArrivalIndexValid = arrivalStrings.indices.contains(1)
+                                                if isArrivalIndexValid
+                                                {
+                                                    Text(arrivalStrings[1])
+                                                        .padding(.bottom)
+                                                }
+                                                
+                                                    
+                                                
+                                                
                                                 
                                                 Text("Время для отбытия: ")
                                                     //.font(.system(size: 1000))
@@ -189,13 +193,14 @@ struct ContentView: View
                                                     .minimumScaleFactor(0.01)
                                                     .lineLimit(1)
                                                 
-                                                let derivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
+                                                let derivalStrings = terminal.calcSchedule.derival.split(separator: ";")
                                                 Text(derivalStrings[0])
-                                                Text(derivalStrings[1])
-                                                    //.font(.system(size: 1000))
-                                                    .scaledToFit()
-                                                    .minimumScaleFactor(0.01)
-                                                    .lineLimit(1)
+                                                let isDerivalIndexValid = derivalStrings.indices.contains(1)
+                                                if isDerivalIndexValid
+                                                {
+                                                    Text(derivalStrings[1])
+                                                        .padding(.bottom)
+                                                }
 
                                             }
                                             
