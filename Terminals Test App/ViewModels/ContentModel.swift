@@ -37,8 +37,12 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var fromId = "0"
     @Published var toId = "0"
 
-    // Current Terminals
-    @Published var currentTerminals = CurrentTerminals()
+    // RouteSaving Logic
+    @Published var currentRoute = Route()
+    @Published var routesArray = [Route]()
+    @Published var savedRoutesData = SavedRoutesData()
+    
+    
     
     override init()
     {
@@ -86,8 +90,15 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
             savedData.parsedData = dataObject
             
             let realm = try Realm()
+            //print(Realm.Configuration.defaultConfiguration.fileURL)
             try realm.write
             {
+                let results = realm.objects(SavedRoutesData.self)
+                if let decoded = try? decoder.decode([Route].self, from: results[0].savedData)
+                {
+                    routesArray = decoded
+                }
+                
                 realm.deleteAll()
                 realm.add(savedData)
             }
@@ -163,13 +174,13 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     
     func setFirstTerminal(terminalId:String)
     {
-        currentTerminals.firstTerminalId = terminalId
+        currentRoute.firstTerminalId = terminalId
         return
     }
     
     func setSecondTerminal(terminalId:String)
     {
-        currentTerminals.secondTerminalId = terminalId
+        currentRoute.secondTerminalId = terminalId
     }
     
 }

@@ -13,8 +13,18 @@ class MyData: Object
    @objc dynamic var parsedData = Data()
 }
 
-class CurrentTerminals: Object
+class Route: Codable
 {
-    @objc dynamic var firstTerminalId:String = ""
-    @objc dynamic var secondTerminalId:String = ""
+    var firstTerminalId:String = ""
+    var secondTerminalId:String = ""
+}
+
+//class SavedRoutes: Codable
+//{
+//    var arrayOfSavedTerminals = [Route]()
+//}
+
+class SavedRoutesData: Object, Codable
+{
+   @objc dynamic var savedData = Data()
 }

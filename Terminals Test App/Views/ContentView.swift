@@ -234,23 +234,35 @@ struct ContentView: View
                                 
                                 do
                                 {
-                                    let realm = try Realm()
                                     
-                                    
-                                    
-                                    realm.beginWrite()
                                     content.setFirstTerminal(terminalId: content.fromId)
                                     content.setSecondTerminal(terminalId: content.toId)
-                                    realm.add(content.currentTerminals)
-                                    try realm.commitWrite()
+                                    
+                                    content.routesArray.append(content.currentRoute)
+                                    
+                                    let encoder = JSONEncoder()
+                                    if let encoded = try? encoder.encode(content.routesArray)
+                                    {
+                                        let realm = try Realm()
+                                        
+                                        realm.beginWrite()
+                                        
+                                        content.savedRoutesData.savedData = encoded
+                                        
+                                        realm.add(content.savedRoutesData)
+                                        
+                                        try realm.commitWrite()
+                                    }
+                                    
+                                    
+                                    
+                                    
                                     
                                 }
                                 catch
                                 {
                                    print("realm error")
                                 }
-                               
-
                                 
                             },
                             label:
