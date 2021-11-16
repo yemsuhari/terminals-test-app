@@ -94,10 +94,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
             try realm.write
             {
                 let results = realm.objects(SavedRoutesData.self)
-                if let decoded = try? decoder.decode([Route].self, from: results[0].savedData)
+                if results.first != nil
                 {
-                    routesArray = decoded
+                    if let decoded = try? decoder.decode([Route].self, from: results.first!.savedData)
+                    {
+                        routesArray = decoded
+                    }
                 }
+               
                 
                 realm.deleteAll()
                 realm.add(savedData)
