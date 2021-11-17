@@ -13,8 +13,9 @@ class MyData: Object
    @objc dynamic var parsedData = Data()
 }
 
-class Route: Codable
+class Route: Codable, Identifiable
 {
+    let id = UUID()
     var firstTerminalId:String = ""
     var secondTerminalId:String = ""
 }
