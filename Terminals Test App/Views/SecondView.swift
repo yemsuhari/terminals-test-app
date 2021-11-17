@@ -147,8 +147,26 @@ struct SecondView: View
                         }
                     }
                     
+                    // Spacer()
+                    
                     // Сохраненные маршруты
-                    Text("Сохранённые маршруты")
+                    Text("Сохранённые маршруты: ")
+                        .bold()
+                    
+                    ForEach(content.routesArray, id: \.id)
+                    { route in
+                        ForEach(content.object!.city, id: \.id)
+                        { city in
+                            ForEach(city.terminals.terminal, id: \.id)
+                            { terminal in
+                                if terminal.id == route.firstTerminalId
+                                {
+                                    Text(terminal.name)
+                                }
+                            }
+                        }
+                        
+                    }
                     
                 }
                 
