@@ -147,25 +147,55 @@ struct SecondView: View
                         }
                     }
                     
-                    // Spacer()
-                    
                     // Сохраненные маршруты
-                    Text("Сохранённые маршруты: ")
-                        .bold()
+                    HStack
+                    {
+                        Spacer()
+                        
+                        Text("Сохранённые маршруты: ")
+                            .bold()
+                        
+                        Spacer()
+                    }
+                    
                     
                     ForEach(content.routesArray, id: \.id)
                     { route in
-                        ForEach(content.object!.city, id: \.id)
-                        { city in
-                            ForEach(city.terminals.terminal, id: \.id)
-                            { terminal in
-                                if terminal.id == route.firstTerminalId
-                                {
-                                    Text(terminal.name)
+                        VStack
+                        {
+                            HStack
+                            {
+                                Spacer()
+                                
+                                ForEach(content.object!.city, id: \.id)
+                                { city in
+                                    ForEach(city.terminals.terminal, id: \.id)
+                                    { terminal in
+                                        if terminal.id == route.firstTerminalId
+                                        {
+                                            Text(terminal.name)
+                                        }
+                                    }
                                 }
+
+                                Image(systemName: "arrow.right")
+                                
+                                ForEach(content.object!.city, id: \.id)
+                                { city in
+                                    ForEach(city.terminals.terminal, id: \.id)
+                                    { terminal in
+                                        if terminal.id == route.secondTerminalId
+                                        {
+                                            Text(terminal.name)
+                                        }
+                                    }
+                                }
+                                
+                                Spacer()
                             }
+                            
                         }
-                        
+                        .foregroundColor(Color.blue)
                     }
                     
                 }
@@ -183,3 +213,7 @@ struct SecondView_Previews: PreviewProvider
     }
 }
 
+//                                    if terminal.id == route.secondTerminalId
+//                                    {
+//                                        Text(terminal.name)
+//                                    }
