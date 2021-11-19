@@ -212,8 +212,3 @@ struct SecondView_Previews: PreviewProvider
         SecondView()
     }
 }
-
-//                                    if terminal.id == route.secondTerminalId
-//                                    {
-//                                        Text(terminal.name)
-//                                    }

@@ -238,21 +238,23 @@ struct ContentView: View
                                     content.setFirstTerminal(terminalId: content.fromId)
                                     content.setSecondTerminal(terminalId: content.toId)
                                     
-                                    content.routesArray.append(content.currentRoute)
+                                    content.currentRoute.id = UUID()
                                     
-                                    let encoder = JSONEncoder()
-                                    if let encoded = try? encoder.encode(content.routesArray)
-                                    {
-                                        let realm = try Realm()
-                                        
-                                        realm.beginWrite()
-                                        
-                                        content.savedRoutesData.savedData = encoded
-                                        
-                                        realm.add(content.savedRoutesData)
-                                        
-                                        try realm.commitWrite()
-                                    }
+                                    content.routesArray.append(content.currentRoute)       //.append(content.currentRoute)
+                                    
+//                                    let encoder = JSONEncoder()
+//                                    if let encoded = try? encoder.encode(content.routesArray)
+//                                    {
+//                                        let realm = try Realm()
+//                                        
+//                                        realm.beginWrite()
+//                                        
+//                                        content.savedRoutesData.savedData = encoded
+//                                        
+//                                        realm.add(content.savedRoutesData)
+//                                        
+//                                        try realm.commitWrite()
+//                                    }
                                     
                                     
                                     

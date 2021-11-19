@@ -179,7 +179,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     func setFirstTerminal(terminalId:String)
     {
         currentRoute.firstTerminalId = terminalId
-        return
     }
     
     func setSecondTerminal(terminalId:String)
