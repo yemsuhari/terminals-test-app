@@ -90,7 +90,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
             savedData.parsedData = dataObject
             
             let realm = try Realm()
-            //print(Realm.Configuration.defaultConfiguration.fileURL)
+            
             try realm.write
             {
                 let results = realm.objects(SavedRoutesData.self)
@@ -103,7 +103,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
                 }
                
                 
-                realm.deleteAll()
+                realm.delete(realm.objects(MyData.self))
                 realm.add(savedData)
             }
             

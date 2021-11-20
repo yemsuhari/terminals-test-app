@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct SecondView: View
 {
@@ -202,6 +203,39 @@ struct SecondView: View
                 
             }
         }
+        .navigationBarItems(
+                            trailing:
+                                Button(
+                                    action:
+                                    {
+                                        content.routesArray = []
+                                        
+                                        do
+                                        {
+                                            let realm = try Realm()
+                                            
+                                            try realm.write
+                                            {
+                                                realm.delete(realm.objects(SavedRoutesData.self))
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            print("Realm Error")
+                                        }
+                                        
+                                        
+                                        
+                                    }, label:
+                                        {
+                                            HStack
+                                            {
+                                                Image(systemName: "trash")
+                                            }
+                                            .foregroundColor(.red)
+                                        }
+                                )
+        )
     }
 }
 

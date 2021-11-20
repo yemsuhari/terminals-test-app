@@ -240,25 +240,21 @@ struct ContentView: View
                                     
                                     content.currentRoute.id = UUID()
                                     
-                                    content.routesArray.append(content.currentRoute)       //.append(content.currentRoute)
+                                    content.routesArray.append(content.currentRoute)
                                     
-//                                    let encoder = JSONEncoder()
-//                                    if let encoded = try? encoder.encode(content.routesArray)
-//                                    {
-//                                        let realm = try Realm()
-//                                        
-//                                        realm.beginWrite()
-//                                        
-//                                        content.savedRoutesData.savedData = encoded
-//                                        
-//                                        realm.add(content.savedRoutesData)
-//                                        
-//                                        try realm.commitWrite()
-//                                    }
-                                    
-                                    
-                                    
-                                    
+                                    let encoder = JSONEncoder()
+                                    if let encoded = try? encoder.encode(content.routesArray)
+                                    {
+                                        let realm = try Realm()
+                                        
+                                        realm.beginWrite()
+                                        
+                                        content.savedRoutesData.savedData = encoded
+                                        
+                                        realm.add(content.savedRoutesData)
+                                        
+                                        try realm.commitWrite()
+                                    }
                                     
                                 }
                                 catch

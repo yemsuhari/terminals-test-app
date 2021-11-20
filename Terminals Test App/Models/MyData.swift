@@ -21,10 +21,6 @@ struct Route: Codable
     var secondTerminalId:String = ""
 }
 
-//class SavedRoutes: Codable
-//{
-//    var arrayOfSavedTerminals = [Route]()
-//}
 
 class SavedRoutesData: Object, Codable
 {
