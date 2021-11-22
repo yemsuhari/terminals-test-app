@@ -209,14 +209,13 @@ struct SecondView: View
                                     action:
                                     {
                                         content.routesArray = []
-                                        
                                         do
                                         {
                                             let realm = try Realm()
                                             
                                             try realm.write
                                             {
-                                                realm.delete(realm.objects(SavedRoutesData.self))
+                                                content.savedRoutesData.savedData = Data()
                                             }
                                         }
                                         catch

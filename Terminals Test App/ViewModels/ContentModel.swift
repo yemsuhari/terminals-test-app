@@ -104,7 +104,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
                
                 
                 realm.delete(realm.objects(MyData.self))
-                realm.add(savedData)
+                realm.add(savedData.self)
             }
             
             return
