@@ -68,7 +68,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         {
 
             // Get the path to the JSON file
-            let urlString = "https://api.dellin.ru/static/catalog/terminals_v3.json"
+            let urlString = "https://api.dellin.ru/static/catalog/terminals_v3.json" // real url "https://api.dellin.ru/static/catalog/terminals_v3.json"
             
             // Create a URL object
             guard let url = URL(string: urlString) else { return }

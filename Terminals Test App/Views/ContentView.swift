@@ -84,7 +84,14 @@ struct ContentView: View
                                                     .lineLimit(1)
                                                 
                                                 let arrivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
-                                                Text(arrivalStrings[0])
+                                                if arrivalStrings.indices.contains(0)
+                                                {
+                                                    Text(arrivalStrings[0])
+                                                }
+                                                else
+                                                {
+                                                    Text("Время уточняется")
+                                                }
                                                 let isArrivalIndexValid = arrivalStrings.indices.contains(1)
                                                 if isArrivalIndexValid
                                                 {
@@ -99,7 +106,14 @@ struct ContentView: View
                                                     .lineLimit(1)
                                                 
                                                 let derivalStrings = terminal.calcSchedule.derival.split(separator: ";")
-                                                Text(derivalStrings[0])
+                                                if  derivalStrings.indices.contains(0)
+                                                {
+                                                    Text(derivalStrings[0])
+                                                }
+                                                else
+                                                {
+                                                    Text("Время уточняется")
+                                                }
                                                 let isDerivalIndexValid = derivalStrings.indices.contains(1)
                                                 if isDerivalIndexValid
                                                 {
@@ -172,9 +186,17 @@ struct ContentView: View
                                                     .imageScale(.large)
                                                 
                                                 Text("Время для прибытия: ")
-                                                
+                                                // Начал тут исправления
                                                 let arrivalStrings = terminal.calcSchedule.arrival.split(separator: ";")
-                                                Text(arrivalStrings[0])
+                                                if arrivalStrings.indices.contains(0)
+                                                {
+                                                    Text(arrivalStrings[0])
+                                                }
+                                                else
+                                                {
+                                                    Text("Время уточняется")
+                                                }
+                                                
                                                 let isArrivalIndexValid = arrivalStrings.indices.contains(1)
                                                 if isArrivalIndexValid
                                                 {
@@ -193,7 +215,14 @@ struct ContentView: View
                                                     .lineLimit(1)
                                                 
                                                 let derivalStrings = terminal.calcSchedule.derival.split(separator: ";")
-                                                Text(derivalStrings[0])
+                                                if  derivalStrings.indices.contains(0)
+                                                {
+                                                    Text(derivalStrings[0])
+                                                }
+                                                else
+                                                {
+                                                    Text("Время уточняется")
+                                                }
                                                 let isDerivalIndexValid = derivalStrings.indices.contains(1)
                                                 if isDerivalIndexValid
                                                 {
