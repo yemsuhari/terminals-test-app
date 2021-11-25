@@ -93,6 +93,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
             
             try realm.write
             {
+                realm.delete(realm.objects(MyData.self))
                 let results = realm.objects(SavedRoutesData.self)
                 if results.first != nil
                 {
@@ -103,7 +104,20 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
                 }
                
                 
-                realm.delete(realm.objects(MyData.self))
+                realm.delete(realm.objects(SavedRoutesData.self))
+                
+                
+                // Сюда нужна пересохранить закодированную информацию
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(routesArray)
+                {
+                    //let realm = try Realm()
+                    
+                    savedRoutesData.savedData = encoded
+                }
+                
+                //  Добавляем объекты
+                realm.add(savedRoutesData.self)
                 realm.add(savedData.self)
             }
             

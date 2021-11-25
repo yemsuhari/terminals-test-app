@@ -280,7 +280,7 @@ struct ContentView: View
                                         
                                         content.savedRoutesData.savedData = encoded
                                         
-                                        realm.add(content.savedRoutesData.self)
+                                        //realm.add(content.savedRoutesData.self)
                         
                                         try realm.commitWrite()
                                     }
