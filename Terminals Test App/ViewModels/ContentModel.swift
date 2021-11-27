@@ -43,6 +43,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     @Published var savedRoutesData = SavedRoutesData()
     
     
+    @Published var chosenView:String? = nil
+    
+    
     
     override init()
     {

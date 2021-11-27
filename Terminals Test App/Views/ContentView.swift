@@ -31,7 +31,7 @@ struct ContentView: View
                 {
                     List
                     {
-                        NavigationLink(destination: SecondView())
+                        NavigationLink(destination: SecondView(), tag: "Second", selection: $content.chosenView)
                         {
                             // Откуда
                             VStack
@@ -150,7 +150,7 @@ struct ContentView: View
                         
                         
                         // Куда
-                        NavigationLink(destination: SecondView())
+                        NavigationLink(destination: SecondView(), tag: "Third", selection: $content.chosenView)
                         {
                             VStack
                             {

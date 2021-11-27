@@ -162,41 +162,52 @@ struct SecondView: View
                     
                     ForEach(content.routesArray, id: \.id)
                     { route in
-                        VStack
-                        {
-                            HStack
-                            {
-                                Spacer()
-                                
-                                ForEach(content.object!.city, id: \.id)
-                                { city in
-                                    ForEach(city.terminals.terminal, id: \.id)
-                                    { terminal in
-                                        if terminal.id == route.firstTerminalId
-                                        {
-                                            Text(terminal.name)
-                                        }
-                                    }
-                                }
-
-                                Image(systemName: "arrow.right")
-                                
-                                ForEach(content.object!.city, id: \.id)
-                                { city in
-                                    ForEach(city.terminals.terminal, id: \.id)
-                                    { terminal in
-                                        if terminal.id == route.secondTerminalId
-                                        {
-                                            Text(terminal.name)
-                                        }
-                                    }
-                                }
-                                
-                                Spacer()
-                            }
+                        Button {
+                            content.fromId = route.firstTerminalId
+                            content.toId = route.secondTerminalId
                             
+                            content.searchTextOne
+                            content.searchTextTwo
+                            
+                            content.chosenView = nil
+                        } label: {
+                            VStack
+                            {
+                                HStack
+                                {
+                                    Spacer()
+                                    
+                                    ForEach(content.object!.city, id: \.id)
+                                    { city in
+                                        ForEach(city.terminals.terminal, id: \.id)
+                                        { terminal in
+                                            if terminal.id == route.firstTerminalId
+                                            {
+                                                Text(terminal.name)
+                                            }
+                                        }
+                                    }
+
+                                    Image(systemName: "arrow.right")
+                                    
+                                    ForEach(content.object!.city, id: \.id)
+                                    { city in
+                                        ForEach(city.terminals.terminal, id: \.id)
+                                        { terminal in
+                                            if terminal.id == route.secondTerminalId
+                                            {
+                                                Text(terminal.name)
+                                            }
+                                        }
+                                    }
+                                    
+                                    Spacer()
+                                }
+                                
+                            }
+                            .foregroundColor(Color.blue)
+
                         }
-                        .foregroundColor(Color.blue)
                     }
                     
                 }
