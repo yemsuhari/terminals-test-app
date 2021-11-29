@@ -17,7 +17,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
     var savedData = MyData()
     let decoder = JSONDecoder()
     
-    @Published var allTerminals: [Terminal]?
+    @Published var allTerminals = [Terminal]()
     
     
     // CoreLocation
@@ -55,7 +55,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         parseJson()
         
         // CoreLocation staff
-        
         // Set the content model as the delegate of the location manager
         locationManager.delegate = self
         
@@ -82,12 +81,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
             // Decode the data
             self.object = try decoder.decode(MainObject.self, from: dataObject)
             
-//            // Все терминалы
-//            object!.city.forEach
-//            { city in
-//                var newTerminals = city.terminals.terminal
-//                allTerminals! += newTerminals
-//            }
             
             // Saving data to Realm database
             savedData.parsedData = dataObject
@@ -203,4 +196,32 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject
         currentRoute.secondTerminalId = terminalId
     }
     
+    func assignTextfieldsValues(firstId:String, secondId:String)
+    {
+        // Assign value for the first terminal
+        for city in object!.city
+        {
+            for terminal in city.terminals.terminal
+            {
+                if firstId == terminal.id
+                {
+                    searchTextOne = terminal.name
+                }
+                    
+            }
+        }
+        
+        // Assign value for the second terminal
+        for city in object!.city
+        {
+            for terminal in city.terminals.terminal
+            {
+                if secondId == terminal.id
+                {
+                    searchTextTwo = terminal.name
+                }
+                    
+            }
+        }
+    }
 }

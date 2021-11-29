@@ -166,8 +166,10 @@ struct SecondView: View
                             content.fromId = route.firstTerminalId
                             content.toId = route.secondTerminalId
                             
-                            content.searchTextOne
-                            content.searchTextTwo
+                            content.assignTextfieldsValues(firstId: route.firstTerminalId, secondId: route.secondTerminalId)
+                            
+                            // Присвоить соответствующие значения полям "Откуда" и "Куда"
+
                             
                             content.chosenView = nil
                         } label: {
